@@ -4,25 +4,57 @@ let MOCK_NEGOTIATOR_AGENTS = {
             "id": "1111111",
             "expertise": "Cars",
             "agentId": "aaaaaa",
-            "agentName": "John Doe"            
+            "agentName": "John Carson",
+            "metroArea": "New York City"           
         },
         {
             "id": "2222222",
             "expertise": "Cars",
             "agentId": "bbbbbbb",
-            "agentName": "Jane Doe",            
+            "agentName": "Jane Doe",
+            "metroArea": "Atlanta"          
         },
         {
             "id": "333333",
             "expertise": "Homes",
             "agentId": "cccc",
-            "agentName": "Jim Doe",            
+            "agentName": "Jim Homer",
+            "metroArea": "Los Angeles"         
         },
         {
             "id": "4444444",
-            "expertise": "Homes",
+            "expertise": "Boats",
             "agentId": "ddddd",
-            "agentName": "Jackie Doe",            
+            "agentName": "Jackie Boatman",
+            "metroArea": "Miami"          
+        }
+        {
+            "id": "555555",
+            "expertise": "Cars",
+            "agentId": "eeeee",
+            "agentName": "Joe Schmoe",
+            "metroArea": "New York City"           
+        },
+        {
+            "id": "666666",
+            "expertise": "Cars",
+            "agentId": "fffff",
+            "agentName": "John Wayne",
+            "metroArea": "Atlanta"          
+        },
+        {
+            "id": "777777",
+            "expertise": "Homes",
+            "agentId": "ggggg",
+            "agentName": "Barbara Clinton",
+            "metroArea": "Los Angeles"         
+        },
+        {
+            "id": "888888",
+            "expertise": "Boats",
+            "agentId": "hhhhh",
+            "agentName": "Hillary Bush",
+            "metroArea": "Miami"          
         }
     ]
 };

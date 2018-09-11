@@ -1,5 +1,77 @@
-<p>Hello World</p>
-<p>does ci and deploy work?</p>
-<body>
-	
-</body>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width">
+	    <title>Negotiator</title>
+	    <script
+	          src="https://code.jquery.com/jquery-3.2.1.min.js"
+	          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	          crossorigin="anonymous"></script>    
+	    <script src="index.js"></script>
+	    <link href="index.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<header role="banner">
+			<h1>Negotiator</h1>
+		</header>
+
+		<main role="main">			
+			
+			<div class="landingPage">
+				<h3>Take the stress out of making major purchases by letting us close the deal for you....</h3>
+				<button>I Need a Negotiator</button>
+				<button>I Am a Negotiator</button>
+				<button>Become a Negotiator</button>
+			</div>
+			
+			<div class="selectAreaPage">
+				<p>Choose A Location</p>
+				<select>
+				  <option value="New York City">New York City</option>
+				  <option value="Los Angeles">Los Angeles</option>
+				  <option value="Miami">Miami</option>				  
+				  <option value="Atlanta">Atlanta</option>			  
+				</select>
+				
+				<div>
+					<button type="submit" class="goBtn">Go</button>
+				</div>
+			</div>
+			
+			<div class="itemDetailPage">
+				<p>Choose An Item</p>
+				<select>
+				  <option value="car">Car</option>
+				  <option value="home">Home</option>
+				  <option value="boat">Boat</option>				  
+				</select>
+
+				<div>
+					<button type="submit" class="nextBtn">Next</button>
+				</div>
+
+				<form class="itemDetailForm">
+					<fieldset>
+						<legend>Item Details</legend>
+						<label for="year">Year</label>
+	  					<input type="text" name="year" id="year" placeholder="ex: 2018"><br>
+
+	  					<label for="make">Make</label>
+	  					<input type="text" name="make" id="make" placeholder="ex: Ford"><br>
+
+	  					<label for="model">Model</label>
+	  					<input type="text" name="model" id="model" placeholder="ex: Focus">
+					</fieldset>					
+				</form>
+
+				<button type="submit">Or Choose A Different Location</button>
+			</div>
+			
+			<div class="chooseNegotiatorPage">
+				<p>Choose Your Negotiator</p>
+			</div>
+
+		</main>
+	</body>
+</html>
