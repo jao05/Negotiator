@@ -37,21 +37,21 @@ let MOCK_NEGOTIATOR_AGENTS = {
         },
         {
             "id": "666666",
-            "expertise": "Cars",
+            "expertise": "Planes",
             "agentId": "fffff",
-            "agentName": "John Wayne",
-            "metroArea": "Atlanta"          
+            "agentName": "Jet Li",
+            "metroArea": "Hong Kong"          
         },
         {
             "id": "777777",
             "expertise": "Homes",
             "agentId": "ggggg",
-            "agentName": "Barbara Clinton",
-            "metroArea": "Los Angeles"         
+            "agentName": "Napoleon Bonaparte",
+            "metroArea": "Paris"         
         },
         {
             "id": "888888",
-            "expertise": "Boats",
+            "expertise": "Homes",
             "agentId": "hhhhh",
             "agentName": "Hillary Bush",
             "metroArea": "Miami"          
