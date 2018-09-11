@@ -95,15 +95,27 @@ function signUpAsUser()
 function renderStartPage()
 {
     // load the Start Page
+    $('.startPage').show();
+    $('.selectAreaPage').hide();
+    $('.itemDetailPage').hide();
+    $('.chooseNegotiatorPage').hide();
 }
 
 function makeUserTypeSelection()
 {
     // Listen for click on "Need A Negotiator" button
-    selectArea();
+    $('.needNegotiatorBtn').on(click, function(){
+
+        // Allow user to select the area in which the negotiation will take place
+        selectArea();
+    });    
     
     // Listen for click on "Become A Negotiator" button
-    signUpAsNegotiator();   
+    $('.becomeNegotiatorBtn').on(click, function(){
+
+        // Allow user to select the area in which the negotiation will take place
+        signUpAsNegotiator();
+    });       
 }
 
 function signUpAsNegotiator()
@@ -174,7 +186,8 @@ function getAndDisplayAgents() {
 }
 
 $(function() {
-    getAndDisplayAgents();
+    // getAndDisplayAgents();
+    renderStartPage();
 })
 
 // ************** TAKEN FORM THINKFUL PROGRAM - BOTTOM ****************************
