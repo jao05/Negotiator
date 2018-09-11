@@ -46,5 +46,3 @@ if (require.main === module) {
 }
 
 module.exports = { app, runServer, closeServer };
-
-// Test comment for feature branch
