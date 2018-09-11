@@ -59,6 +59,99 @@ let MOCK_NEGOTIATOR_AGENTS = {
     ]
 };
 
+function showLandingPage()
+{
+    // Load landing page
+    // Give option to sign-up or login
+    
+    // If user alreay exists...login
+    loginAsUser();
+
+    // If user doesn't exist...sign-up
+    signUpAsUser(); 
+}
+
+function loginAsUser()
+{
+    // Take in required info including new login credentials
+    // After valid credentials are provided, load the Start page, otherwise give error msg
+    renderStartPage();
+}
+
+function signUpAsUser()
+{
+    // Take in required info including new login credentials
+    // After valid credentials are entered, add new user to the database collection that holds users, otherwise show meaningful error msg
+    
+    // After user sign-up, load the Start page
+    renderStartPage();
+}
+
+
+
+
+// ********************START HERE FOR MVP, AND WORRY ABOUT LOGINS & SIGN-INS LATER??********************************
+
+function renderStartPage()
+{
+    // load the Start Page
+}
+
+function makeUserTypeSelection()
+{
+    // Listen for click on "Need A Negotiator" button
+    selectArea();
+    
+    // Listen for click on "Become A Negotiator" button
+    signUpAsNegotiator();   
+}
+
+function signUpAsNegotiator()
+{
+    // Take in required info
+    // Add new Negotiator to the database collection that holds Negotiators
+}
+
+function selectArea()
+{
+    // Allow user to choose from a dropdown list of available cities
+    // Listen for submission of area choice
+    // Store area choice in a variable
+    
+    // Move to "Select Item Screen"
+    selectItemAndAddDetail();
+}
+
+function selectItemAndAddDetail()
+{
+    // Allow user to choose from a dropdown list of items for which we have negotiators
+    // Store item choice
+    // Reveal item detail form, then take-in & store item detail inputs from form into variables
+}
+
+function chooseDifferentCity()
+{
+    // Provide link to return to "Select Area Screen"
+}
+
+function populateNegotiatorList() // ***************THIS IS getAndDisplayAgents()**********
+{
+    // Use item detail variables to query the Negotiator collection in the db & return matches in a radio button list
+}
+
+function chooseNegotiator()
+{
+    // listen for submission after a radio button is clicked
+    // Show Negotiator selection confirmation & message
+}
+
+function chooseDifferentItem()
+{
+    // Provide link to return to "Select Item Screen"
+    selectItemAndAddDetail();
+}
+
+
 // ************** TAKEN FORM THINKFUL PROGRAM - TOP ****************************
 
 function getAgents(callbackFn) {
