@@ -49,17 +49,17 @@
 
 	  				<p>Expertise</p>
 	  				<select>
-					  <option value="car">Car</option>
-					  <option value="home">Home</option>
-					  <option value="boat">Boat</option>
-					  <option value="plane">Plane</option>				  
+					  <option value="Car">Car</option>
+					  <option value="Home">Home</option>
+					  <option value="Boat">Boat</option>
+					  <option value="Plane">Plane</option>				  
 					</select>
 				</form>
 			</div>
 			
 			<div class="selectAreaPage">
 				<p>Choose A Location</p>
-				<select>
+				<select id="citySelection">
 				  <option value="New York City">New York City</option>
 				  <option value="Los Angeles">Los Angeles</option>
 				  <option value="Miami">Miami</option>				  
@@ -69,17 +69,17 @@
 				</select>
 				
 				<div>
-					<button type="submit" class="goBtn">Go</button>
+					<button type="submit" class="goToCityBtn">Go</button>
 				</div>
 			</div>
 			
 			<div class="itemDetailPage">
 				<p>Choose An Item</p>
-				<select>
-				  <option value="car">Car</option>
-				  <option value="home">Home</option>
-				  <option value="boat">Boat</option>
-				  <option value="plane">Plane</option>				  
+				<select id="itemSelection">
+				  <option value="Car">Car</option>
+				  <option value="Home">Home</option>
+				  <option value="Boat">Boat</option>
+				  <option value="Plane">Plane</option>				  
 				</select>
 
 				<div>
@@ -89,15 +89,17 @@
 				<form class="itemDetailForm">
 					<fieldset>
 						<legend>Item Details</legend>
-						<label for="year">Year</label>
-	  					<input type="text" name="year" id="year" placeholder="ex: 2018"><br>
+						<label for="itemYear">Year</label>
+	  					<input type="text" name="itemYear" id="itemYear" placeholder="ex: 2018"><br>
 
-	  					<label for="make">Make</label>
-	  					<input type="text" name="make" id="make" placeholder="ex: Ford"><br>
+	  					<label for="itemMake">Make</label>
+	  					<input type="text" name="itemMake" id="itemMake" placeholder="ex: Ford"><br>
 
-	  					<label for="model">Model</label>
-	  					<input type="text" name="model" id="model" placeholder="ex: Focus">
-					</fieldset>					
+	  					<label for="itemModel">Model</label>
+	  					<input type="text" name="itemModel" id="itemModel" placeholder="ex: Focus">
+					</fieldset>
+
+					<button type="submit" class="itemDetailDoneBtn">Done</button>
 				</form>
 
 				<button type="submit">Or Choose A Different Location</button>

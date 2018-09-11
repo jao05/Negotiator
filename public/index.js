@@ -59,6 +59,13 @@ let MOCK_NEGOTIATOR_AGENTS = {
     ]
 };
 
+let cityChoice;
+
+let itemChoice;
+let itemYear;
+let itemMake;
+let itemModel;
+
 function showLandingPage()
 {
     // Load landing page
@@ -104,14 +111,14 @@ function renderStartPage()
 function makeUserTypeSelection()
 {
     // Listen for click on "Need A Negotiator" button
-    $('.needNegotiatorBtn').on(click, function(){
+    $('.needNegotiatorBtn').on('click', function(){
 
         // Allow user to select the area in which the negotiation will take place
         selectArea();
     });    
     
     // Listen for click on "Become A Negotiator" button
-    $('.becomeNegotiatorBtn').on(click, function(){
+    $('.becomeNegotiatorBtn').on('click', function(){
 
         // Allow user to select the area in which the negotiation will take place
         signUpAsNegotiator();
@@ -126,9 +133,16 @@ function signUpAsNegotiator()
 
 function selectArea()
 {
+    // Show "selectAreaPage"
+    $('.selectAreaPage').show();
+
     // Allow user to choose from a dropdown list of available cities
-    // Listen for submission of area choice
-    // Store area choice in a variable
+    // Listen for submission of area choice    
+    $('.goToCityBtn').on('click', function(){
+
+        // Store area choice in a variable
+        cityChoice = $('#citySelection').val();
+    });
     
     // Move to "Select Item Screen"
     selectItemAndAddDetail();
@@ -136,9 +150,29 @@ function selectArea()
 
 function selectItemAndAddDetail()
 {
+    // Show "itemDetailPage", but hide the Item Detail Form
+    $('.itemDetailPage').show();
+    $('.itemDetailForm').hide();
+
     // Allow user to choose from a dropdown list of items for which we have negotiators
-    // Store item choice
-    // Reveal item detail form, then take-in & store item detail inputs from form into variables
+    // Listen for submission of item choice
+    $('.nextBtn').on('click', function(){
+
+        // Store item choice
+        itemChoice = $('#itemSelection').val();
+
+        // Reveal item detail form, 
+        $('.itemDetailForm').show();
+
+        // Listen for 'Done' button submission, 
+        $('.itemDetailDoneBtn').on('click', function(){
+
+            // then take-in & store item detail inputs from form into variables
+            itemYear = $('#itemYear').val();
+            itemMake = $('#itemMake').val();
+            itemModel = $('#itemModel').val();
+        });
+    });    
 }
 
 function chooseDifferentCity()
