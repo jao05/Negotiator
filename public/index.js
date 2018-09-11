@@ -59,6 +59,8 @@ let MOCK_NEGOTIATOR_AGENTS = {
     ]
 };
 
+// ************** TAKEN FORM THINKFUL PROGRAM - TOP ****************************
+
 function getAgents(callbackFn) {
     setTimeout(function(){ callbackFn(MOCK_NEGOTIATOR_AGENTS)}, 100);
 }
@@ -67,7 +69,7 @@ function getAgents(callbackFn) {
 // to real API later
 function displayAgents(data) {
     for (index in data.agents) {
-       $('body').append(
+       $('#matchedAgents').html(
         '<p>' + data.agents[index].agentName + '</p>');
     }
 }
@@ -81,3 +83,5 @@ function getAndDisplayAgents() {
 $(function() {
     getAndDisplayAgents();
 })
+
+// ************** TAKEN FORM THINKFUL PROGRAM - BOTTOM ****************************
