@@ -224,11 +224,7 @@ function selectItemAndAddDetail()
 function chooseDifferentCity()
 {
     // Provide link to return to "Select Area Screen"
-}
-
-function populateNegotiatorList() // ***************THIS IS getAndDisplayAgents()**********
-{
-    // Use item detail variables to query the Negotiator collection in the db & return matches in a radio button list
+    // Back button??
 }
 
 function chooseNegotiator()
@@ -240,6 +236,7 @@ function chooseNegotiator()
 function chooseDifferentItem()
 {
     // Provide link to return to "Select Item Screen"
+    // Or add Back button??
     selectItemAndAddDetail();
 }
 
@@ -272,7 +269,7 @@ function getAndDisplayAgents() {
 }
 
 $(function() {
-    // getAndDisplayAgents();
+    
     renderStartPage();
 })
 
