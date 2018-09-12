@@ -132,6 +132,9 @@ function makeUserTypeSelection()
 
         // Hide the Start Page
         $('.startPage').hide();
+
+        // Show Negotiator Sign-up page
+        $('.negotiatorSignupPage').show();
     });       
 }
 
