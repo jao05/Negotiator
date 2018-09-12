@@ -162,7 +162,7 @@ function signUpAsNegotiator()
        // Using data store in variables, add new Negotiator to the database collection that holds Negotiators
 
        // Display agent sign-up message on screen
-       $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorSignupName }, you're all signed up!</p>`);       
+       $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorSignupName }, you're all signed up and ready to negotiate in ${ negotiatorSignupLocation }!</p>`);       
     });    
 }
 
