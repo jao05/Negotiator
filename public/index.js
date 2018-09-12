@@ -66,6 +66,10 @@ let itemYear;
 let itemMake;
 let itemModel;
 
+let negotiatorSignupName;
+let negotiatorSignupLocation;
+let negotiatorSignupExpertise;
+
 function showLandingPage()
 {
     // Load landing page
@@ -101,6 +105,9 @@ function signUpAsUser()
 
 function renderStartPage()
 {
+    // Hide Landing Page
+    $('.landingPage').hide();
+
     // load the Start Page
     $('.startPage').show();
     $('.selectAreaPage').hide();
@@ -141,7 +148,22 @@ function makeUserTypeSelection()
 function signUpAsNegotiator()
 {
     // Take in required info
-    // Add new Negotiator to the database collection that holds Negotiators
+    // Listen for Negotiator sign-up form submission
+    $('.negotiatorSignupDoneBtn').on('click', function(event){
+
+       // Prevent default form submission behavior
+       event.preventDefault();
+
+       // Store form inputs into variables
+       negotiatorSignupLocation = $('#negotiatorSignupLocationSelection').val();
+       negotiatorSignupExpertise = $('#negotiatorSignupExpertiseSelection').val();
+       negotiatorSignupName = $('#agentName').val();
+
+       // Using data store in variables, add new Negotiator to the database collection that holds Negotiators
+
+       // Display agent sign-up message on screen
+       $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorSignupName }, you're all signed up!</p>`);       
+    });    
 }
 
 function selectArea()
@@ -191,13 +213,9 @@ function selectItemAndAddDetail()
             // then take-in & store item detail inputs from form into variables
             itemYear = $('#itemYear').val();
             itemMake = $('#itemMake').val();
-            itemModel = $('#itemModel').val();
+            itemModel = $('#itemModel').val();            
 
-            console.log(itemYear);
-            console.log(itemMake);
-            console.log(itemModel);
-
-            // make an AJAX request using the variable as parameters
+            // make an (mock)AJAX request using the variable as parameters
             getAndDisplayAgents();
         });
     });    
