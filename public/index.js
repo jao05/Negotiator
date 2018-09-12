@@ -27,7 +27,7 @@ let MOCK_NEGOTIATOR_AGENTS = {
             "agentId": "ddddd",
             "agentName": "Jackie Boatman",
             "metroArea": "Miami"          
-        }
+        },
         {
             "id": "555555",
             "expertise": "Cars",
@@ -106,6 +106,10 @@ function renderStartPage()
     $('.selectAreaPage').hide();
     $('.itemDetailPage').hide();
     $('.chooseNegotiatorPage').hide();
+    $('.negotiatorSignupPage').hide();
+
+    // Calling in order to activate the event listener
+    makeUserTypeSelection();
 }
 
 function makeUserTypeSelection()
@@ -115,6 +119,9 @@ function makeUserTypeSelection()
 
         // Allow user to select the area in which the negotiation will take place
         selectArea();
+
+        // Hide the Start Page
+        $('.startPage').hide();
     });    
     
     // Listen for click on "Become A Negotiator" button
@@ -122,6 +129,9 @@ function makeUserTypeSelection()
 
         // Allow user to select the area in which the negotiation will take place
         signUpAsNegotiator();
+
+        // Hide the Start Page
+        $('.startPage').hide();
     });       
 }
 
@@ -142,10 +152,13 @@ function selectArea()
 
         // Store area choice in a variable
         cityChoice = $('#citySelection').val();
-    });
-    
-    // Move to "Select Item Screen"
-    selectItemAndAddDetail();
+
+        // Hide the Select Area Page
+        $('.selectAreaPage').hide();
+
+        // Move to "Select Item Screen"
+        selectItemAndAddDetail();
+    });    
 }
 
 function selectItemAndAddDetail()
@@ -158,6 +171,9 @@ function selectItemAndAddDetail()
     // Listen for submission of item choice
     $('.nextBtn').on('click', function(){
 
+        // Remove the 'Next' button
+        $('.nextBtn').hide();
+
         // Store item choice
         itemChoice = $('#itemSelection').val();
 
@@ -165,12 +181,21 @@ function selectItemAndAddDetail()
         $('.itemDetailForm').show();
 
         // Listen for 'Done' button submission, 
-        $('.itemDetailDoneBtn').on('click', function(){
+        $('.itemDetailDoneBtn').on('click', function(event){
+
+            event.preventDefault();
 
             // then take-in & store item detail inputs from form into variables
             itemYear = $('#itemYear').val();
             itemMake = $('#itemMake').val();
             itemModel = $('#itemModel').val();
+
+            console.log(itemYear);
+            console.log(itemMake);
+            console.log(itemModel);
+
+            // make an AJAX request using the variable as parameters
+            getAndDisplayAgents();
         });
     });    
 }
@@ -217,6 +242,12 @@ function displayAgents(data) {
 // are connecting to real API
 function getAndDisplayAgents() {
     getAgents(displayAgents);
+
+    // Hide Item Detail Page
+    $('.itemDetailPage').hide();
+
+    // Show Agents List
+    $('.chooseNegotiatorPage').show();
 }
 
 $(function() {
