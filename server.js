@@ -91,8 +91,20 @@ app.put("/negotiators/:id", (req, res) => {
 });
 
 // DELETE requests to '/negotiators' endpoint
+app.delete("/negotiators/:id", (req, res) => {
+  Negotiator.findByIdAndRemove(req.params.id)
+    .then(negotiator => res.status(204).end())
+    .catch(err => res.status(500).json({ message: "Internal server error" }));
+});
 
+// catch-all endpoint if client makes request to non-existent endpoint
+app.use("*", function(req, res) {
+  res.status(404).json({ message: "Not Found" });
+});
 
+// closeServer needs access to a server object, but that only
+// gets created when `runServer` runs, so we declare `server` here
+// and then assign a value to it in runServer
 let server;
 
 // this function starts our server and returns a Promise.
