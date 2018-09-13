@@ -14,7 +14,12 @@ mongoose.Promise = global.Promise;
 // app like PORT and DATABASE_URL
 const {PORT, DATABASE_URL} = require('./config');
 
-// GET endpoint
+// Import the Negotiator model
+const { Negotiator } = require("./models");
+
+// GET requests to '/negotiators'
+
+
 // POST endpoint
 // PUT endpoint
 // DELETE endpoint

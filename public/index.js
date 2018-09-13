@@ -2,57 +2,49 @@ let MOCK_NEGOTIATOR_AGENTS = {
     "agents": [
         {
             "id": "1111111",
-            "expertise": "Cars",
-            "agentId": "aaaaaa",
+            "expertise": "Cars",            
             "agentName": "John Carson",
             "metroArea": "New York City"           
         },
         {
             "id": "2222222",
-            "expertise": "Cars",
-            "agentId": "bbbbbbb",
+            "expertise": "Cars",            
             "agentName": "Jane Doe",
             "metroArea": "Atlanta"          
         },
         {
             "id": "333333",
-            "expertise": "Homes",
-            "agentId": "cccc",
+            "expertise": "Homes",            
             "agentName": "Jim Homer",
             "metroArea": "Los Angeles"         
         },
         {
             "id": "4444444",
-            "expertise": "Boats",
-            "agentId": "ddddd",
+            "expertise": "Boats",            
             "agentName": "Jackie Boatman",
             "metroArea": "Miami"          
         },
         {
             "id": "555555",
-            "expertise": "Cars",
-            "agentId": "eeeee",
+            "expertise": "Cars",            
             "agentName": "Joe Schmoe",
             "metroArea": "New York City"           
         },
         {
             "id": "666666",
-            "expertise": "Planes",
-            "agentId": "fffff",
+            "expertise": "Planes",            
             "agentName": "Jet Li",
             "metroArea": "Hong Kong"          
         },
         {
             "id": "777777",
-            "expertise": "Homes",
-            "agentId": "ggggg",
+            "expertise": "Homes",            
             "agentName": "Napoleon Bonaparte",
             "metroArea": "Paris"         
         },
         {
             "id": "888888",
-            "expertise": "Homes",
-            "agentId": "hhhhh",
+            "expertise": "Homes",            
             "agentName": "Hillary Bush",
             "metroArea": "Miami"          
         }
