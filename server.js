@@ -36,6 +36,30 @@ app.get("/negotiators", (req, res) => {
 });
 
 // POST endpoint
+app.post("/negotiators", (req, res) => {
+  const requiredFields = ["agentFirstName", "agentLastName", "metroArea", "expertise"];
+  for (let i = 0; i < requiredFields.length; i++) {
+    const field = requiredFields[i];
+    if (!(field in req.body)) {
+      const message = `Missing \`${field}\` in request body`;
+      console.error(message);
+      return res.status(400).send(message);
+    }
+  }
+
+  Negotiator.create({
+    agentFirstName: req.body.agentFirstName,
+    agentLastName: req.body.agentLastName,
+    metroArea: req.body.metroArea,
+    expertise: req.body.expertise
+  })
+    .then(negotiator => res.status(201).json(negotiator.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    });
+});
+
 // PUT endpoint
 // DELETE endpoint
 
