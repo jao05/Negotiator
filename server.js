@@ -8,6 +8,11 @@ const mongoose = require('mongoose');
 // but it's better to make Mongoose use built in es6 promises
 mongoose.Promise = global.Promise;
 
+// GET endpoint
+// POST endpoint
+// PUT endpoint
+// DELETE endpoint
+
 
 let server;
 
