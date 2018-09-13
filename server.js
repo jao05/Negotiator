@@ -18,7 +18,22 @@ const {PORT, DATABASE_URL} = require('./config');
 const { Negotiator } = require("./models");
 
 // GET requests to '/negotiators'
-
+app.get("/negotiators", (req, res) => {
+  Negotiator.find()
+    
+    // success callback: for each negotiator we got back, we'll
+    // call the `.serialize` instance method we've created in
+    // models.js in order to only expose the data we want the API return.    
+    .then(negotiators => {
+      res.json({
+        negotiators: negotiators.map(negotiator => negotiator.serialize())
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    });
+});
 
 // POST endpoint
 // PUT endpoint
