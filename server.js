@@ -2,6 +2,12 @@ const express = require('express');
 const app = express();
 app.use(express.static('public'));
 
+const mongoose = require('mongoose');
+
+// Mongoose internally uses a promise-like object,
+// but it's better to make Mongoose use built in es6 promises
+mongoose.Promise = global.Promise;
+
 
 let server;
 
