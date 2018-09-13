@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 app.use(express.static('public'));
 
+require('dotenv').config()
+
 const mongoose = require('mongoose');
 
 // Mongoose internally uses a promise-like object,
