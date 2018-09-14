@@ -237,4 +237,30 @@ describe('Serving HTML', function() {
   });
 
   // Test the DELETE request for the /negotiators endpoint
+  describe('DELETE endpoint', function() {
+    // strategy:
+    //  1. get a negotiator
+    //  2. make a DELETE request for that negotiator's id
+    //  3. assert that response has right status code
+    //  4. prove that negotiator with the id doesn't exist in db anymore
+    it('delete a negotiator by id', function() {
+
+      let currentNegotiator;
+
+      return Negotiator
+        .findOne()
+        .then(function(_currentNegotiator) {
+          currentNegotiator = _currentNegotiator;
+          return chai.request(app).delete(`/negotiators/${currentNegotiator.id}`);
+        })
+        .then(function(res) {
+          expect(res).to.have.status(204);
+          return Negotiator.findById(currentNegotiator.id);
+        })
+        .then(function(_currentNegotiator) {
+          expect(_currentNegotiator).to.be.null;
+        });
+    });
+  });
+
 });
