@@ -21,14 +21,34 @@ function tearDownDb() {
 }
 
 function seedNegotiatorData(){
-  const seededNegotiator = {
-    agentFirstName: "exFirst",
-    agentLastName: "exLast",
-    metroArea: "Atlanta",
-    expertise: "Car" 
-  } 
+  const seededNegotiators = [
+    {
+      agentFirstName: "John",
+      agentLastName: "Carson",
+      metroArea: "New York City",
+      expertise: "Car" 
+    },
+    {
+      agentFirstName: "Jane",
+      agentLastName: "Doe",
+      metroArea: "Atlanta",
+      expertise: "Car" 
+    },
+    {
+      agentFirstName: "Jim",
+      agentLastName: "Homer",
+      metroArea: "Los Angeles",
+      expertise: "Home" 
+    },
+    {
+      agentFirstName: "Jackie",
+      agentLastName: "Boatman",
+      metroArea: "Miami",
+      expertise: "Boat" 
+    }
+  ] 
 
-  return BlogPost.create(seededNegotiator);
+  return BlogPost.create(seededNegotiators);
 }
 ******************************************************/
 
