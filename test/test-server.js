@@ -199,6 +199,42 @@ describe('Serving HTML', function() {
   });
 
   // Test the PUT request for the /negotiators endpoint
+  describe('PUT endpoint', function() {
+
+    // strategy:
+    //  1. Get an existing negotiator from db
+    //  2. Make a PUT request to update that negotiator
+    //  3. Prove negotiator returned by request contains data we sent
+    //  4. Prove negotiator in db is correctly updated
+    it('should update fields you send over', function() {
+      const updateData = {
+        metroArea: 'updatedMetroArea',
+        expertise: 'updatedExpertise'
+      };
+
+      return Negotiator
+        .findOne()
+        .then(function(agent) {
+          updateData.id = agent.id;
+
+          // make request then inspect it to make sure it reflects
+          // data we sent
+          return chai.request(app)
+            .put(`/negotitators/${agent.id}`)
+            .send(updateData);
+        })
+        .then(function(res) {
+          expect(res).to.have.status(201);
+          expect(res).to.be.a.object;
+
+          return Negotiator.findById(updateData.id);
+        })
+        .then(function(agent) {
+          expect(agent.metroArea).to.equal(updateData.metroArea);
+          expect(agent.expertise).to.equal(updateData.expertise);
+        });
+    });
+  });
 
   // Test the DELETE request for the /negotiators endpoint
 });
