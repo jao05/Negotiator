@@ -21,34 +21,36 @@ function tearDownDb() {
 }
 
 function seedNegotiatorData(){
-  const seededNegotiators = [
-    {
-      agentFirstName: "John",
-      agentLastName: "Carson",
-      metroArea: "New York City",
-      expertise: "Car" 
-    },
-    {
-      agentFirstName: "Jane",
-      agentLastName: "Doe",
-      metroArea: "Atlanta",
-      expertise: "Car" 
-    },
-    {
-      agentFirstName: "Jim",
-      agentLastName: "Homer",
-      metroArea: "Los Angeles",
-      expertise: "Home" 
-    },
-    {
-      agentFirstName: "Jackie",
-      agentLastName: "Boatman",
-      metroArea: "Miami",
-      expertise: "Boat" 
-    }
-  ] 
+  const seededNegotiators = {
+    "agents": [
+      {
+        agentFirstName: "John",
+        agentLastName: "Carson",
+        metroArea: "New York City",
+        expertise: "Car" 
+      },
+      {
+        agentFirstName: "Jane",
+        agentLastName: "Doe",
+        metroArea: "Atlanta",
+        expertise: "Car" 
+      },
+      {
+        agentFirstName: "Jim",
+        agentLastName: "Homer",
+        metroArea: "Los Angeles",
+        expertise: "Home" 
+      },
+      {
+        agentFirstName: "Jackie",
+        agentLastName: "Boatman",
+        metroArea: "Miami",
+        expertise: "Boat" 
+      }
+    ]
+  } 
 
-  return BlogPost.create(seededNegotiators);
+  return Negotiator.create(seededNegotiators);
 }
 ******************************************************/
 
@@ -59,19 +61,19 @@ describe('Serving HTML', function() {
   // there's a possibility of a race condition where our tests start
   // running before our server has started.
   before(function() {
-    return runServer();
+    return runServer(TEST_DATABASE_URL);
   });
 
-  /************************
+  /**********************************************************
   beforeEach(function() {
-    return seedBlogData();
+    return seedNegotiatorData();
   });
   
 
   afterEach(function() {
     return tearDownDb();
   });
-  ***************************/
+  *************************************************************/
 
   // Close server after these tests run in case
   // we have other test modules that need to 
@@ -93,4 +95,38 @@ describe('Serving HTML', function() {
         expect(res).to.be.html;        
       });
   });
+
+  // Test the GET request for the /negotiators endpoint  
+  it('should return all negotiators',function(){
+      // strategy:
+      //    1. get back all negotiators returned by GET request to `/negotiators`
+      //    2. prove the res has the right status & data type
+      //    3. prove the number of posts we got back is equal to number
+      //       in db.
+      //
+      // need to have access to mutate and access `res` across
+      // `.then()` calls below, so declare it here so can modify in place
+      let res;
+
+      return chai.request(app)
+        .get('/negotiators')
+        .then(function(_res) {
+          // so subsequent .then blocks can access response object
+          res = _res;
+          expect(res).to.have.status(200);
+          // otherwise our db seeding didn't work          
+          expect(res.body.agents).to.have.lengthOf.at.least(1);
+          return Negotiator.count();
+        })
+        .then(function(count) {
+          
+          expect(res.body.agents).to.have.lengthOf(count);
+        });
+  });
+
+  // Test the POST request for the /negotiators endpoint
+
+  // Test the PUT request for the /negotiators endpoint
+
+  // Test the DELETE request for the /negotiators endpoint
 });
