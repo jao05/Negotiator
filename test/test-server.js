@@ -10,6 +10,28 @@ const expect = chai.expect;
 
 chai.use(chaiHttp);
 
+/**********************************************
+// this function deletes the entire database.
+// we'll call it in an `afterEach` block below
+// to ensure data from one test does not stick
+// around for next one
+function tearDownDb() {
+  console.warn('Deleting database');
+  return mongoose.connection.dropDatabase();
+}
+
+function seedNegotiatorData(){
+  const seededNegotiator = {
+    agentFirstName: "exFirst",
+    agentLastName: "exLast",
+    metroArea: "Atlanta",
+    expertise: "Car" 
+  } 
+
+  return BlogPost.create(seededNegotiator);
+}
+******************************************************/
+
 describe('Serving HTML', function() {
   // Before our tests run, we activate the server. Our `runServer`
   // function returns a promise, and we return the promise by
@@ -19,6 +41,17 @@ describe('Serving HTML', function() {
   before(function() {
     return runServer();
   });
+
+  /************************
+  beforeEach(function() {
+    return seedBlogData();
+  });
+  
+
+  afterEach(function() {
+    return tearDownDb();
+  });
+  ***************************/
 
   // Close server after these tests run in case
   // we have other test modules that need to 
