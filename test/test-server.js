@@ -10,7 +10,7 @@ const expect = chai.expect;
 
 chai.use(chaiHttp);
 
-/**********************************************
+
 // this function deletes the entire database.
 // we'll call it in an `afterEach` block below
 // to ensure data from one test does not stick
@@ -52,7 +52,7 @@ function seedNegotiatorData(){
 
   return Negotiator.create(seededNegotiators);
 }
-******************************************************/
+
 
 describe('Serving HTML', function() {
   // Before our tests run, we activate the server. Our `runServer`
@@ -64,7 +64,7 @@ describe('Serving HTML', function() {
     return runServer(TEST_DATABASE_URL);
   });
 
-  /**********************************************************
+  
   beforeEach(function() {
     return seedNegotiatorData();
   });
@@ -73,7 +73,7 @@ describe('Serving HTML', function() {
   afterEach(function() {
     return tearDownDb();
   });
-  *************************************************************/
+  
 
   // Close server after these tests run in case
   // we have other test modules that need to 
@@ -123,6 +123,37 @@ describe('Serving HTML', function() {
           expect(res.body.agents).to.have.lengthOf(count);
         });
   });
+
+  it('should return negotiators with right fields', function() {
+      // Strategy: Get back all negotiators, and ensure they have expected keys
+
+      let resNegotiator;
+      return chai.request(app)
+        .get('/negotiators')
+        .then(function(res) {
+          expect(res).to.have.status(200);
+          expect(res).to.be.json;
+          
+          expect(res.body.agents).to.be.a('array');
+          expect(res.body.agents).to.have.lengthOf.at.least(1);
+
+          res.body.agents.forEach(function(agent) {
+            expect(agent).to.be.a('object');
+            expect(agent).to.include.keys(
+              'agentFirstName', 'agentLastName', 'expertise', 'metroArea');
+          });
+          resNegotiator = res.body.agents[0];
+          return Negotiator.findById(resNegotiator.id);
+        })
+        .then(function(agent) {
+
+          
+          expect(resNegotiator.expertise).to.equal(agent.expertise);
+          expect(resNegotiator.metroArea).to.equal(agent.metroArea);
+          expect(resNegotiator.agentName).to.equal(`${agent.agentFirstName} ${agent.agentLastName}`);
+          
+        });
+    });
 
   // Test the POST request for the /negotiators endpoint
 
