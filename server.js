@@ -44,7 +44,6 @@ app.get("/negotiators", (req, res) => {
 
 // POST requests to '/negotiators' endpoint
 app.post("/negotiators", jsonParser, (req, res) => {
-  console.log('negotiator post hit');
   const requiredFields = ["agentFirstName", "agentLastName", "metroArea", "expertise"];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -53,8 +52,7 @@ app.post("/negotiators", jsonParser, (req, res) => {
       console.error(message);
       return res.status(400).send(message);
     }
-  }
-  console.log('no missing fields');
+  }  
 
   Negotiator.create({
     agentFirstName: req.body.agentFirstName,
@@ -63,7 +61,6 @@ app.post("/negotiators", jsonParser, (req, res) => {
     expertise: req.body.expertise
   })
   .then(negotiator => {
-    console.log('negotiator created');
     res.status(201).json(negotiator.serialize());
   })
   .catch(err => {

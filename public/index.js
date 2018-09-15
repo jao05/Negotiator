@@ -172,7 +172,9 @@ function signUpAsNegotiator()
        $.ajax(settings);
 
        // Display agent sign-up message on screen
-       $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorSignupFirstName }, you're all signed up and ready to negotiate in ${ negotiatorSignupLocation }!</p>`);       
+       $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorSignupFirstName }, you're all signed up and ready to negotiate in ${ negotiatorSignupLocation }!</p>` + 
+            `<p>You will receive notification when you are matched with a client.</p>`
+        );       
     });    
 }
 
