@@ -1,6 +1,13 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
+
+// To parse json in requests
+const bodyParser = require('body-parser'); 
+const jsonParser = bodyParser.json();
+
 app.use(express.static('public'));
+app.use(morgan('common'));
 
 require('dotenv').config()
 
@@ -36,7 +43,8 @@ app.get("/negotiators", (req, res) => {
 });
 
 // POST requests to '/negotiators' endpoint
-app.post("/negotiators", (req, res) => {
+app.post("/negotiators", jsonParser, (req, res) => {
+  console.log('negotiator post hit');
   const requiredFields = ["agentFirstName", "agentLastName", "metroArea", "expertise"];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -46,6 +54,7 @@ app.post("/negotiators", (req, res) => {
       return res.status(400).send(message);
     }
   }
+  console.log('no missing fields');
 
   Negotiator.create({
     agentFirstName: req.body.agentFirstName,
@@ -53,11 +62,14 @@ app.post("/negotiators", (req, res) => {
     metroArea: req.body.metroArea,
     expertise: req.body.expertise
   })
-    .then(negotiator => res.status(201).json(negotiator.serialize()))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ message: "Internal server error" });
-    });
+  .then(negotiator => {
+    console.log('negotiator created');
+    res.status(201).json(negotiator.serialize());
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  });
 });
 
 // PUT requests to '/negotiators' endpoint
@@ -110,17 +122,21 @@ let server;
 // this function starts our server and returns a Promise.
 // In our test code, we need a way of asynchronously starting
 // our server, since we'll be dealing with promises there.
-function runServer() {
-  const port = process.env.PORT || 8080;
+function runServer(databaseUrl, port = PORT) {
   return new Promise((resolve, reject) => {
-    server = app
-      .listen(port, () => {
+    mongoose.connect(databaseUrl, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(port, () => {
         console.log(`Your app is listening on port ${port}`);
-        resolve(server);
+        resolve();
       })
-      .on("error", err => {
-        reject(err);
-      });
+        .on('error', err => {
+          mongoose.disconnect();
+          reject(err);
+        });
+    });
   });
 }
 
@@ -128,15 +144,15 @@ function runServer() {
 // `server.close` does not return a promise on its own, so we manually
 // create one.
 function closeServer() {
-  return new Promise((resolve, reject) => {
-    console.log("Closing server");
-    server.close(err => {
-      if (err) {
-        reject(err);
-        // so we don't also call `resolve()`
-        return;
-      }
-      resolve();
+  return mongoose.disconnect().then(() => {
+    return new Promise((resolve, reject) => {
+      console.log('Closing server');
+      server.close(err => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
     });
   });
 }
@@ -144,7 +160,7 @@ function closeServer() {
 // if server.js is called directly (aka, with `node server.js`), this block
 // runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
-  runServer().catch(err => console.error(err));
+  runServer(DATABASE_URL).catch(err => console.error(err));
 }
 
 module.exports = { app, runServer, closeServer };

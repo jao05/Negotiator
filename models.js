@@ -30,8 +30,42 @@ negotiatorSchema.methods.serialize = function() {
   };
 };
 
+const userSchema = mongoose.Schema({
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  metroArea: { type: String, required: true },
+  selectedItem: { type: String, required: true },
+  selectedNegotiator: { type: mongoose.Schema.Types.ObjectId, ref: 'Negotiator' },
+  userName: { type: String, required: true },
+  password: { type: String, required: true }
+});
+
+userSchema.pre('find', function(next) {
+  this.populate('selectedNegotiator');
+  next();
+});
+
+userSchema.pre('findOne', function(next) {
+  this.populate('selectedNegotiator');
+  next();
+});
+
+userSchema.virtual("fullNameString").get(function() {
+  return `${this.firstName} ${this.lastName}`.trim();
+});
+
+userSchema.methods.serialize = function() {
+  return {
+    id: this._id,
+    fullName: this.fullNameString,
+    selectedItem: this.selectedItem,
+    metroArea: this.metroArea
+  };
+};
+
 // note that all instance methods and virtual properties on our
 // schema must be defined *before* we make the call to `.model`.
 const Negotiator = mongoose.model("Negotiator", negotiatorSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = { Negotiator };
+module.exports = { Negotiator, User };

@@ -58,9 +58,6 @@ let itemYear;
 let itemMake;
 let itemModel;
 
-let negotiatorSignupName;
-let negotiatorSignupLocation;
-let negotiatorSignupExpertise;
 
 function showLandingPage()
 {
@@ -147,14 +144,35 @@ function signUpAsNegotiator()
        event.preventDefault();
 
        // Store form inputs into variables
-       negotiatorSignupLocation = $('#negotiatorSignupLocationSelection').val();
-       negotiatorSignupExpertise = $('#negotiatorSignupExpertiseSelection').val();
-       negotiatorSignupName = $('#agentName').val();
+       let negotiatorSignupLocation = $('#negotiatorSignupLocationSelection').val();
+       let negotiatorSignupExpertise = $('#negotiatorSignupExpertiseSelection').val();
+       let negotiatorSignupFirstName = $('#agentFirstName').val();
+       let negotiatorSignupLastName = $('#agentLastName').val();
+       
+       let data = {
+            
+            metroArea: negotiatorSignupLocation,
+            expertise: negotiatorSignupExpertise,
+            agentFirstName: negotiatorSignupFirstName,
+            agentLastName: negotiatorSignupLastName
+       };
 
-       // Using data store in variables, add new Negotiator to the database collection that holds Negotiators
+       // Using data stored in variables, add new Negotiator to the database collection that holds Negotiators
+       let settings = { 
+            url: "/negotiators", 
+            type: 'POST', 
+            data: JSON.stringify(data), 
+            dataType: 'json', 
+            contentType: 'application/json; charset= utf-8', 
+            success: function(data) { 
+                console.log(data);
+            }
+       };
+        
+       $.ajax(settings);
 
        // Display agent sign-up message on screen
-       $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorSignupName }, you're all signed up and ready to negotiate in ${ negotiatorSignupLocation }!</p>`);       
+       $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorSignupFirstName }, you're all signed up and ready to negotiate in ${ negotiatorSignupLocation }!</p>`);       
     });    
 }
 
