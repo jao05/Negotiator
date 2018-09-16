@@ -232,8 +232,13 @@ function selectItemAndAddDetail()
             itemMake = $('#itemMake').val();
             itemModel = $('#itemModel').val();            
 
+            /*
             // make an (mock)AJAX request using the variable as parameters
             getAndDisplayAgents();
+            */
+
+            // Using the user's inputs as parameters, display negotiators that fit criteria
+            getNegotiatorChoices(cityChoice, itemChoice);
         });
     });  
 }
@@ -244,9 +249,23 @@ function chooseDifferentCity()
     // Back button??
 }
 
-function chooseNegotiator()
+function getNegotiatorChoices(chosenCity, chosenItem)
+{
+    // Make an AJAX call that passes in the user's choices as query parameters
+    
+}
+
+function displayNegotiatorChoices()
+{
+    // Use as callBack function after request to get a list of negotiator choices
+    // Display response negotiator choices as a list of radio buttons
+    // Call make 'makeNegotiatorSelection()' to allow user to choose a negotiator
+}
+
+function makeNegotiatorSelection()
 {
     // listen for submission after a radio button is clicked
+    // Save the negotiator to the user's object
     // Show Negotiator selection confirmation & message
 }
 
