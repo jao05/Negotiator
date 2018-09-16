@@ -24,6 +24,15 @@ const {PORT, DATABASE_URL} = require('./config');
 // Import the Negotiator model
 const { Negotiator } = require("./models");
 
+// Import the user router
+const usersRouter = require('./usersRouter');
+
+// when requests come into `/users`
+// we'll route them to the express
+// router instance we've imported. Remember,
+// this router instance acts as a modular, mini-express app.
+app.use("/users", usersRouter);
+
 // GET requests to '/negotiators' endpoint
 app.get("/negotiators", (req, res) => {  
 
