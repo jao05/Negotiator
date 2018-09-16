@@ -25,8 +25,9 @@ const {PORT, DATABASE_URL} = require('./config');
 const { Negotiator } = require("./models");
 
 // GET requests to '/negotiators' endpoint
-app.get("/negotiators", (req, res) => {
-  Negotiator.find()
+app.get("/negotiators", (req, res) => {  
+
+  Negotiator.find({metroArea: req.query.chosenCity , expertise: req.query.chosenItem})
     
     // success callback: for each negotiator we got back, we'll
     // call the `.serialize` instance method we've created in

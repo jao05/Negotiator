@@ -232,6 +232,11 @@ function selectItemAndAddDetail()
             itemMake = $('#itemMake').val();
             itemModel = $('#itemModel').val();            
 
+            console.log(userFirstName);
+            console.log(userLastName);
+            console.log(cityChoice);
+            console.log(itemChoice);
+
             /*
             // make an (mock)AJAX request using the variable as parameters
             getAndDisplayAgents();
@@ -246,19 +251,29 @@ function selectItemAndAddDetail()
 function chooseDifferentCity()
 {
     // Provide link to return to "Select Area Screen"
-    // Back button??
+    // **********Back button??**************
 }
 
 function getNegotiatorChoices(chosenCity, chosenItem)
 {
     // Make an AJAX call that passes in the user's choices as query parameters
-    
+    $.getJSON('/negotiators', {chosenCity, chosenItem}, generateNegotiatorChoices);
 }
 
-function displayNegotiatorChoices()
+function generateNegotiatorChoices(data)
 {
+    console.log(data);
     // Use as callBack function after request to get a list of negotiator choices
-    // Display response negotiator choices as a list of radio buttons
+    // For each matched negotiator returned, create a string with the negotiator's info
+
+    // Call 'displayNegotiatorChoices()' to display choices on screen
+}
+
+function displayNegotiatorChoices(arrayOfNegotiatorInfoStrings)
+{
+    // For each matched negotiator returned, display response negotiator as a radio button choice
+    $('#matchedAgents').html();//*****************
+
     // Call make 'makeNegotiatorSelection()' to allow user to choose a negotiator
 }
 
