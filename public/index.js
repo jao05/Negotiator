@@ -52,6 +52,8 @@ let MOCK_NEGOTIATOR_AGENTS = {
 };
 
 let cityChoice;
+let userFirstName;
+let userLastName;
 
 let itemChoice;
 let itemYear;
@@ -157,7 +159,7 @@ function signUpAsNegotiator()
             agentLastName: negotiatorSignupLastName
        };
 
-       // Using data stored in variables, add new Negotiator to the database collection that holds Negotiators
+       // Using data stored in variables, create an object to add new negotiator to the database collection that holds Negotiators
        let settings = { 
             url: "/negotiators", 
             type: 'POST', 
@@ -169,11 +171,12 @@ function signUpAsNegotiator()
             }
        };
         
+       // Pass the object as parameter for the AJAX request
        $.ajax(settings);
 
        // Display agent sign-up message on screen
        $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorSignupFirstName }, you're all signed up and ready to negotiate in ${ negotiatorSignupLocation }!</p>` + 
-            `<p>You will receive notification when you are matched with a client.</p>`
+            `<p>You will receive notification when you have been matched with a client.</p>`
         );       
     });    
 }
@@ -187,7 +190,9 @@ function selectArea()
     // Listen for submission of area choice    
     $('.goToCityBtn').on('click', function(){
 
-        // Store area choice in a variable
+        // Store user choices in variables
+        userFirstName = $('#userFirstName').val(); 
+        userLastName = $('#userLastName').val(); 
         cityChoice = $('#citySelection').val();
 
         // Hide the Select Area Page
@@ -230,7 +235,7 @@ function selectItemAndAddDetail()
             // make an (mock)AJAX request using the variable as parameters
             getAndDisplayAgents();
         });
-    });    
+    });  
 }
 
 function chooseDifferentCity()
