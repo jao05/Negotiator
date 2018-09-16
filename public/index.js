@@ -274,9 +274,9 @@ function generateNegotiatorChoices(data)
     // add the string to the negotiatorStrings array
     for ( neg = 0; neg < data.negotiators.length; neg++)
     {
-        negotiatorStrings.push(`<p>${data.negotiators[neg].agentName}</p>`);
+        negotiatorStrings.push(`<input type="radio" name="negotiatorChoices" value="${data.negotiators[neg].agentName}">${data.negotiators[neg].agentName}`);
     }
-
+    
     // Call 'displayNegotiatorChoices()' to display choices on screen    
     displayNegotiatorChoices(negotiatorStrings);
 }
