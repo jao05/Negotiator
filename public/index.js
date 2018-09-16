@@ -193,7 +193,7 @@ function selectArea()
         // Store user choices in variables
         userFirstName = $('#userFirstName').val(); 
         userLastName = $('#userLastName').val(); 
-        cityChoice = $('#citySelection').val();
+        cityChoice = $('#citySelection').val();        
 
         // Hide the Select Area Page
         $('.selectAreaPage').hide();
@@ -272,11 +272,11 @@ function generateNegotiatorChoices(data)
 
     // For each matched negotiator returned, create a string with the negotiator's info and
     // add the string to the negotiatorStrings array
-    for ( neg = 0; neg < data.negotiators.length; neg++)
+    for ( let neg = 0; neg < data.negotiators.length; neg++)
     {
-        negotiatorStrings.push(`<input type="radio" name="negotiatorChoices" value="${data.negotiators[neg].agentName}">${data.negotiators[neg].agentName}`);
+        negotiatorStrings.push(`<input type="radio" name="negotiatorChoices" id="choice${neg + 1}" value="${data.negotiators[neg].agentName}">${data.negotiators[neg].agentName}`);
     }
-    
+
     // Call 'displayNegotiatorChoices()' to display choices on screen    
     displayNegotiatorChoices(negotiatorStrings);
 }
@@ -293,13 +293,25 @@ function displayNegotiatorChoices(arrayOfNegotiatorInfoStrings)
     $('.chooseNegotiatorPage').show();
 
     // Call make 'makeNegotiatorSelection()' to allow user to choose a negotiator
+    makeNegotiatorSelection();
 }
 
 function makeNegotiatorSelection()
 {
     // listen for submission after a radio button is clicked
-    // Save the negotiator to the user's object
-    // Show Negotiator selection confirmation & message
+    $('#confirmNegotiatorBtn').on('click', function(event){
+
+        // prevent default form submission behavior
+        event.preventDefault();
+
+        // Store selected negotiator's name in a varible
+        let negotiatorSelection = $('input[name=negotiatorChoices]:checked').val();
+        
+        // **********Save the negotiator to the user's object*********NOT NOW, MAYBE LATER************
+        
+        // Show Negotiator selection confirmation & message
+        console.log(negotiatorSelection);
+    });    
 }
 
 function chooseDifferentItem()
