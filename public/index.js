@@ -310,7 +310,9 @@ function makeNegotiatorSelection()
         // **********Save the negotiator to the user's object*********NOT NOW, MAYBE LATER************
         
         // Show Negotiator selection confirmation & message
-        console.log(negotiatorSelection);
+        $('#matchedAgents').hide();
+        $('.chooseNegotiatorPage').append(`<p>Congrats ${userFirstName}, you will be represented well by ${negotiatorSelection}!</p>` + 
+            `<p>You will be contacted shortly to provide more info about your purchase.</p>`);        
     });    
 }
 
