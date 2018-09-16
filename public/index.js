@@ -242,6 +242,9 @@ function selectItemAndAddDetail()
             getAndDisplayAgents();
             */
 
+            // Hide Item Detail Page
+            $('.itemDetailPage').hide();
+
             // Using the user's inputs as parameters, display negotiators that fit criteria
             getNegotiatorChoices(cityChoice, itemChoice);
         });
@@ -261,18 +264,33 @@ function getNegotiatorChoices(chosenCity, chosenItem)
 }
 
 function generateNegotiatorChoices(data)
-{
-    console.log(data);
+{    
     // Use as callBack function after request to get a list of negotiator choices
-    // For each matched negotiator returned, create a string with the negotiator's info
 
-    // Call 'displayNegotiatorChoices()' to display choices on screen
+    // Array to hold the generated strings
+    let negotiatorStrings = [];
+
+    // For each matched negotiator returned, create a string with the negotiator's info and
+    // add the string to the negotiatorStrings array
+    for ( neg = 0; neg < data.negotiators.length; neg++)
+    {
+        negotiatorStrings.push(`<p>${data.negotiators[neg].agentName}</p>`);
+    }
+
+    // Call 'displayNegotiatorChoices()' to display choices on screen    
+    displayNegotiatorChoices(negotiatorStrings);
 }
 
 function displayNegotiatorChoices(arrayOfNegotiatorInfoStrings)
-{
+{    
     // For each matched negotiator returned, display response negotiator as a radio button choice
-    $('#matchedAgents').html();//*****************
+    for( string = 0; string < arrayOfNegotiatorInfoStrings.length; string++)
+    {
+        $('#chooseNegotiatorForm').append(arrayOfNegotiatorInfoStrings[string]);
+    }
+
+    // Show the list of negotiators
+    $('.chooseNegotiatorPage').show();
 
     // Call make 'makeNegotiatorSelection()' to allow user to choose a negotiator
 }
