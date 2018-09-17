@@ -94,26 +94,55 @@ function signUpAsUser()
 
 // ********************START HERE FOR MVP, AND WORRY ABOUT LOGINS & SIGN-INS LATER??********************************
 
+function renderLandingPage()
+{
+    // Hide all other pages
+    $('.startPage').hide();    
+    $('.selectAreaPage').hide();
+    $('.itemDetailPage').hide();
+    $('.chooseNegotiatorPage').hide();
+    $('.negotiatorSignupPage').hide();
+
+    // Listen for click on 'Get Started' button
+    $('#getStartedBtn').on('click', function(){
+
+        // Take user to Start Page
+        renderStartPage();
+    });
+}
+
 function renderStartPage()
 {
     // Hide Landing Page
     $('.landingPage').hide();
 
+    // Add 'Restart' button to main element
+    $('main').append(`<button type="submit" id="restartBtn">Restart</button>`);
+
+    // Listen for click on 'Restart' button
+    $('#restartBtn').on('click', function(){
+
+        // Go back to Start Page
+        location.reload();
+    });
+
     // load the Start Page
-    $('.startPage').show();
-    $('.selectAreaPage').hide();
-    $('.itemDetailPage').hide();
-    $('.chooseNegotiatorPage').hide();
-    $('.negotiatorSignupPage').hide();
+    $('.startPage').show();    
+    // $('.selectAreaPage').hide();
+    // $('.itemDetailPage').hide();
+    // $('.chooseNegotiatorPage').hide();
+    // $('.negotiatorSignupPage').hide();
 
     // Calling in order to activate the event listener
     makeUserTypeSelection();
 }
 
 function makeUserTypeSelection()
-{
+{    
+
     // Listen for click on "Need A Negotiator" button
     $('.needNegotiatorBtn').on('click', function(){
+       
 
         // Allow user to select the area in which the negotiation will take place
         selectArea();
@@ -124,6 +153,7 @@ function makeUserTypeSelection()
     
     // Listen for click on "Become A Negotiator" button
     $('.becomeNegotiatorBtn').on('click', function(){
+        
 
         // Allow user to select the area in which the negotiation will take place
         signUpAsNegotiator();
@@ -353,7 +383,7 @@ function getAndDisplayAgents() {
 
 $(function() {
     
-    renderStartPage();
+    renderLandingPage();    
 })
 
 // ************** TAKEN FORM THINKFUL PROGRAM - BOTTOM ****************************
