@@ -28,8 +28,7 @@ function tearDownDb() {
 }
 
 function seedNegotiatorData(){
-  const seededNegotiators = {
-    "agents": [
+  const seededNegotiators = [
       {
         agentFirstName: "John",
         agentLastName: "Carson",
@@ -55,7 +54,7 @@ function seedNegotiatorData(){
         expertise: "Boat" 
       }
     ]
-  } 
+  
 
   return Negotiator.create(seededNegotiators);
 }
@@ -105,7 +104,7 @@ describe('Serving HTML', function() {
 
   describe('GET endpoint', function(){
     // Test the GET request for the /negotiators endpoint  
-    it('should return all negotiators',function(){
+    it('should return negotiators that meet certain criteria',function(){
         // strategy:
         //    1. get back all negotiators returned by GET request to `/negotiators`
         //    2. prove the res has the right status & data type
@@ -117,19 +116,14 @@ describe('Serving HTML', function() {
         let res;
 
         return chai.request(app)
-          .get('/negotiators')
+          .get('/negotiators?chosenCity=Atlanta&chosenItem=Car')          
           .then(function(_res) {
             // so subsequent .then blocks can access response object
             res = _res;
             expect(res).to.have.status(200);
             // otherwise our db seeding didn't work          
-            expect(res.body.agents).to.have.lengthOf.at.least(1);
-            return Negotiator.count();
-          })
-          .then(function(count) {
-            
-            expect(res.body.agents).to.have.lengthOf(count);
-          });
+            expect(res.body.negotiators).to.have.lengthOf.at.least(1);            
+          })          
     });
 
     it('should return negotiators with right fields', function() {
@@ -137,20 +131,20 @@ describe('Serving HTML', function() {
 
         let resNegotiator;
         return chai.request(app)
-          .get('/negotiators')
+          .get('/negotiators?chosenCity=Atlanta&chosenItem=Car')
           .then(function(res) {
             expect(res).to.have.status(200);
             expect(res).to.be.json;
             
-            expect(res.body.agents).to.be.a('array');
-            expect(res.body.agents).to.have.lengthOf.at.least(1);
+            expect(res.body.negotiators).to.be.a('array');
+            expect(res.body.negotiators).to.have.lengthOf.at.least(1);
 
-            res.body.agents.forEach(function(agent) {
-              expect(agent).to.be.a('object');
-              expect(agent).to.include.keys(
-                'agentFirstName', 'agentLastName', 'expertise', 'metroArea');
+            res.body.negotiators.forEach(function(negotiator) {
+              expect(negotiator).to.be.a('object');
+              expect(negotiator).to.include.keys(
+                'id', 'agentName', 'expertise', 'metroArea');
             });
-            resNegotiator = res.body.agents[0];
+            resNegotiator = res.body.negotiators[0];
             return Negotiator.findById(resNegotiator.id);
           })
           .then(function(agent) {
@@ -227,12 +221,12 @@ describe('Serving HTML', function() {
           // make request then inspect it to make sure it reflects
           // data we sent
           return chai.request(app)
-            .put(`/negotitators/${agent.id}`)
+            .put(`/negotiators/${agent.id}`)
             .send(updateData);
         })
         .then(function(res) {
           expect(res).to.have.status(201);
-          expect(res).to.be.a.object;
+          expect(res.body).to.be.a('object');
 
           return Negotiator.findById(updateData.id);
         })

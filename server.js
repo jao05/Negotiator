@@ -37,7 +37,7 @@ app.use("/users", usersRouter);
 
 // GET requests to '/negotiators' endpoint
 app.get("/negotiators", (req, res) => {  
-
+  console.log(`CHOSENCITY: ${req.query.chosenCity}`);
   Negotiator.find({metroArea: req.query.chosenCity , expertise: req.query.chosenItem})
     
     // success callback: for each negotiator we got back, we'll
@@ -82,7 +82,7 @@ app.post("/negotiators", jsonParser, (req, res) => {
 });
 
 // PUT requests to '/negotiators' endpoint
-app.put("/negotiators/:id", (req, res) => {
+app.put("/negotiators/:id", jsonParser, (req, res) => {
   // ensure that the id in the request path and the one in request body match
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message =
