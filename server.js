@@ -35,9 +35,9 @@ const usersRouter = require('./usersRouter');
 app.use("/users", usersRouter);
 ***********************************************************/
 
-// GET requests to '/negotiators' endpoint
+// GET requests by metroArea & expertise to '/negotiators' endpoint
 app.get("/negotiators", (req, res) => {  
-  console.log(`CHOSENCITY: ${req.query.chosenCity}`);
+  
   Negotiator.find({metroArea: req.query.chosenCity , expertise: req.query.chosenItem})
     
     // success callback: for each negotiator we got back, we'll
@@ -48,6 +48,23 @@ app.get("/negotiators", (req, res) => {
         negotiators: negotiators.map(negotiator => negotiator.serialize())
       });
     })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    });
+});
+
+// GET requests by ID to '/negotiators' endpoint
+app.get("/negotiators/:id", (req, res) => {  
+  
+  Negotiator.findById(req.query.id)
+    
+    // success callback: for negotiator we got back, we'll
+    // call the `.serialize` instance method we've created in
+    // models.js in order to only expose the data we want the API return.    
+    .then(negotiator => {
+      res.json(negotiator.serialize())
+      })    
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: "Internal server error" });

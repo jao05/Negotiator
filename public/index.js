@@ -295,7 +295,8 @@ function makeNegotiatorSelection()
         // Store selected negotiator's name in a varible
         negotiatorSelection = $('input[name=negotiatorChoices]:checked').val();
         
-        // Make a GET request to get ID of the negotiator
+        // Make a GET request to get ID of the negotiator***************
+
         // Make a PUT request to create the user, save the negotiator to the user's object
         
         
