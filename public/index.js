@@ -263,12 +263,7 @@ function selectItemAndAddDetail()
             // then take-in & store item detail inputs from form into variables
             itemYear = $('#itemYear').val();
             itemMake = $('#itemMake').val();
-            itemModel = $('#itemModel').val();            
-
-            console.log(userFirstName);
-            console.log(userLastName);
-            console.log(cityChoice);
-            console.log(itemChoice);
+            itemModel = $('#itemModel').val();             
 
             /*
             // make an (mock)AJAX request using the variable as parameters
@@ -312,8 +307,7 @@ function generateNegotiatorChoices(data)
 
     // If no negotiators fit the criteria (meaning there are none in db), return an appropriate message
     if (negotiatorStrings.length == 0)
-    {
-        console.log('here....');
+    {        
         printNoNegotiatorMsg();
     }
     else
@@ -362,8 +356,7 @@ function makeNegotiatorSelection()
 }
 
 function printNoNegotiatorMsg()
-{
-    console.log('here too...');
+{    
     // Print message to chooseNegotiatorPage
     $('.chooseNegotiatorPage').html(`<p>Sorry, currently there are no negotiators that fit your criteria, but we're working on it.  Try again later.</p>`);
 
