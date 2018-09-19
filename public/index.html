@@ -19,7 +19,7 @@
 		<main role="main">			
 			
 			<div class="landingPage">
-				<p>Welcome to Negotiator, where we take the stress out of making major purchases by handling all aspects of the deal for you...due diligence, purch price, fin terms, inspect</p>
+				<p>Welcome to Negotiator, where we take the stress out of making major purchases by handling all aspects of the deal for you. With a fews clicks, you will be connected with a dedicated agent to assist with due diligence, purchase price negotiation, financing terms negotiation, and product quality assurance.</p>
 
 				<button type="submit" id="getStartedBtn">Get Started</button>
 			</div>
@@ -65,27 +65,28 @@
 			
 			<div class="selectAreaPage">
 				<p>Give us a little info about yourself.</p>
-				<form>
+				<form id="selectAreaForm">
 					<label for="userFirstName">First Name</label>
-	  				<input type="text" name="userFirstName" id="userFirstName"><br>
+	  				<input type="text" name="userFirstName" id="userFirstName" required>
 
 	  				<label for="userLastName">Last Name</label>
-	  				<input type="text" name="userLastName" id="userLastName"><br>	  				
-				</form>
+	  				<input type="text" name="userLastName" id="userLastName" required>  				
 				
-				<p>Choose A Location</p>
-				<select id="citySelection">
-				  <option value="New York City">New York City</option>
-				  <option value="Los Angeles">Los Angeles</option>
-				  <option value="Miami">Miami</option>				  
-				  <option value="Atlanta">Atlanta</option>
-				  <option value="Paris">Paris</option>
-				  <option value="Hong Kong">Hong Kong</option>			  
-				</select>
 				
-				<div>
+					<p>Choose A Location</p>
+					<select id="citySelection">
+					  <option value="New York City">New York City</option>
+					  <option value="Los Angeles">Los Angeles</option>
+					  <option value="Miami">Miami</option>				  
+					  <option value="Atlanta">Atlanta</option>
+					  <option value="Paris">Paris</option>
+					  <option value="Hong Kong">Hong Kong</option>			  
+					</select>
+					
+					
 					<button type="submit" class="goToCityBtn">Go</button>
-				</div>
+					
+				</form>
 			</div>
 			
 			<div class="itemDetailPage">
@@ -121,8 +122,9 @@
 			<div class="chooseNegotiatorPage">
 				<p>Choose Your Negotiator</p>
 				<div id="matchedAgents">
-					<form id="chooseNegotiatorForm"></form>
-					<button type="submit" id="confirmNegotiatorBtn">Confirm</button>
+					<form id="chooseNegotiatorForm">
+						<button type="submit" id="confirmNegotiatorBtn">Confirm</button>
+					</form>					
 				</div>
 			</div>			
 		</main>

@@ -218,7 +218,10 @@ function selectArea()
 
     // Allow user to choose from a dropdown list of available cities
     // Listen for submission of area choice    
-    $('.goToCityBtn').on('click', function(){
+    $('#selectAreaForm').on('submit', function(event){
+
+        // Prevent default form submission behavior
+        event.preventDefault();
 
         // Store user choices in variables
         userFirstName = $('#userFirstName').val(); 
@@ -304,7 +307,7 @@ function generateNegotiatorChoices(data)
     // add the string to the negotiatorStrings array
     for ( let neg = 0; neg < data.negotiators.length; neg++)
     {
-        negotiatorStrings.push(`<input type="radio" name="negotiatorChoices" id="choice${neg + 1}" value="${data.negotiators[neg].agentName}">${data.negotiators[neg].agentName}`);
+        negotiatorStrings.push(`<input type="radio" name="negotiatorChoices" id="choice${neg + 1}" value="${data.negotiators[neg].agentName}" required>${data.negotiators[neg].agentName}`);
     }
 
     // Call 'displayNegotiatorChoices()' to display choices on screen    
@@ -329,7 +332,7 @@ function displayNegotiatorChoices(arrayOfNegotiatorInfoStrings)
 function makeNegotiatorSelection()
 {
     // listen for submission after a radio button is clicked
-    $('#confirmNegotiatorBtn').on('click', function(event){
+    $('#chooseNegotiatorForm').on('submit', function(event){
 
         // prevent default form submission behavior
         event.preventDefault();
