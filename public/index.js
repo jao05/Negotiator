@@ -54,6 +54,8 @@ let MOCK_NEGOTIATOR_AGENTS = {
 let cityChoice;
 let userFirstName;
 let userLastName;
+let loginUserName;
+let loginPassword;
 
 let itemChoice;
 let itemYear;
@@ -226,7 +228,9 @@ function selectArea()
         // Store user choices in variables
         userFirstName = $('#userFirstName').val(); 
         userLastName = $('#userLastName').val(); 
-        cityChoice = $('#citySelection').val();        
+        cityChoice = $('#citySelection').val();
+        loginUserName = $('#username').val();
+        loginPassword = $('#password').val();     
 
         // Hide the Select Area Page
         $('.selectAreaPage').hide();
