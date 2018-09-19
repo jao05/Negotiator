@@ -61,6 +61,7 @@ let itemChoice;
 let itemYear;
 let itemMake;
 let itemModel;
+let negotiatorSelection
 
 
 function showLandingPage()
@@ -345,9 +346,11 @@ function makeNegotiatorSelection()
         event.preventDefault();
 
         // Store selected negotiator's name in a varible
-        let negotiatorSelection = $('input[name=negotiatorChoices]:checked').val();
+        negotiatorSelection = $('input[name=negotiatorChoices]:checked').val();
         
-        // **********Save the negotiator to the user's object*********NOT NOW, MAYBE LATER************
+        // Make a GET request to get ID of the negotiator
+        // Make a PUT request to create the user, save the negotiator to the user's object
+        
         
         // Show Negotiator selection confirmation & message
         $('#matchedAgents').hide();
