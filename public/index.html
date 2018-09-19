@@ -19,11 +19,12 @@
 		<main role="main">			
 			
 			<div class="landingPage">
-				<h3>Take the stress out of making major purchases by letting us close the deal for you...purch price, fin terms, inspect</h3>
+				<p>Welcome to Negotiator, where we take the stress out of making major purchases by handling all aspects of the deal for you. With a fews clicks, you will be connected with a dedicated agent to assist with due diligence, purchase price negotiation, financing terms negotiation, and product quality assurance.</p>
 
-				<div class="loginPage"></div>
+				<button type="submit" id="getStartedBtn">Get Started</button>
 			</div>
 
+			<div class="loginPage"></div>
 			<div class="userSignupPage"></div>						
 			
 			<div class="startPage">				
@@ -34,8 +35,11 @@
 			<div class="negotiatorSignupPage">
 				<p>Complete this form to be on your way to a new career as a Negotiator!</p>
 				<form>
-					<label for="agentName">Name</label>
-	  				<input type="text" name="agentName" id="agentName"><br>
+					<label for="agentFirstName">First Name</label>
+	  				<input type="text" name="agentFirstName" id="agentFirstName"><br>
+
+	  				<label for="agentLastName">Last Name</label>
+	  				<input type="text" name="agentLastName" id="agentLastName"><br>
 
 	  				<p>Location</p>
 	  				<select id="negotiatorSignupLocationSelection">
@@ -60,23 +64,33 @@
 			</div>
 			
 			<div class="selectAreaPage">
-				<p>Choose A Location</p>
-				<select id="citySelection">
-				  <option value="New York City">New York City</option>
-				  <option value="Los Angeles">Los Angeles</option>
-				  <option value="Miami">Miami</option>				  
-				  <option value="Atlanta">Atlanta</option>
-				  <option value="Paris">Paris</option>
-				  <option value="Hong Kong">Hong Kong</option>			  
-				</select>
+				<p>Give us a little info about yourself.</p>
+				<form id="selectAreaForm">
+					<label for="userFirstName">First Name</label>
+	  				<input type="text" name="userFirstName" id="userFirstName" required>
+
+	  				<label for="userLastName">Last Name</label>
+	  				<input type="text" name="userLastName" id="userLastName" required>  				
 				
-				<div>
+				
+					<p>Choose A Location</p>
+					<select id="citySelection">
+					  <option value="New York City">New York City</option>
+					  <option value="Los Angeles">Los Angeles</option>
+					  <option value="Miami">Miami</option>				  
+					  <option value="Atlanta">Atlanta</option>
+					  <option value="Paris">Paris</option>
+					  <option value="Hong Kong">Hong Kong</option>			  
+					</select>
+					
+					
 					<button type="submit" class="goToCityBtn">Go</button>
-				</div>
+					
+				</form>
 			</div>
 			
 			<div class="itemDetailPage">
-				<p>Choose An Item</p>
+				<p>What are you planning to purchase?</p>
 				<select id="itemSelection">
 				  <option value="Car">Car</option>
 				  <option value="Home">Home</option>
@@ -90,7 +104,7 @@
 
 				<form class="itemDetailForm">
 					<fieldset>
-						<legend>Item Details</legend>
+						<legend>Item Details - Optional</legend>
 						<label for="itemYear">Year</label>
 	  					<input type="text" name="itemYear" id="itemYear" placeholder="ex: 2018"><br>
 
@@ -102,16 +116,17 @@
 
 	  					<div><button type="submit" class="itemDetailDoneBtn">Done</button></div>
 					</fieldset>
-				</form>
-
-				<button type="submit">Or Choose A Different Location</button>
+				</form>				
 			</div>
 			
 			<div class="chooseNegotiatorPage">
 				<p>Choose Your Negotiator</p>
-				<div id="matchedAgents"></div>
-			</div>
-
+				<div id="matchedAgents">
+					<form id="chooseNegotiatorForm">
+						<button type="submit" id="confirmNegotiatorBtn">Confirm</button>
+					</form>					
+				</div>
+			</div>			
 		</main>
 	</body>
 </html>
