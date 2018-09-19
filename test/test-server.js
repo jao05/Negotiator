@@ -5,6 +5,9 @@ const chaiHttp = require('chai-http');
 // server.app, server.runServer, and server.closeServer
 const {app, runServer, closeServer} = require('../server');
 
+// Import dbs
+const {TEST_DATABASE_URL} = require('../config');
+
 // declare a variable for expect from chai import
 const expect = chai.expect;
 
