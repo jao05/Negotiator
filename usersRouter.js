@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
 
 // POST requests to '/users' endpoint
 router.post("/", jsonParser, (req, res) => {
-  const requiredFields = ["firstName", "lastName", "metroArea", "selectedItem", "username", "password"];
+  const requiredFields = ["firstName", "lastName", "username", "password"];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -41,9 +41,7 @@ router.post("/", jsonParser, (req, res) => {
 
   User.create({
     firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    metroArea: req.body.metroArea,
-    selectedItem: req.body.selectedItem,
+    lastName: req.body.lastName,    
     username: req.body.username,
     password: req.body.password,
   })
