@@ -120,7 +120,7 @@ function signUpAsNegotiator()
 {
     // Take in required info
     // Listen for Negotiator sign-up form submission
-    $('.negotiatorSignupDoneBtn').on('click', function(event){
+    $('.negotiatorSignupDoneBtn').on('submit', function(event){
 
        // Prevent default form submission behavior
        event.preventDefault();
