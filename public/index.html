@@ -22,10 +22,31 @@
 				<p>Welcome to Negotiator, where we take the stress out of making major purchases by handling all aspects of the deal for you. With a fews clicks, you will be connected with a dedicated agent to assist with due diligence, purchase price negotiation, financing terms negotiation, and product quality assurance.</p>
 
 				<button type="submit" id="getStartedBtn">Get Started</button>
+				<button type="submit" id="signupBtn">Sign Up</button>
 			</div>
 
 			<div class="loginPage"></div>
-			<div class="userSignupPage"></div>						
+			<div class="userSignupPage">
+				<p>Give us a little info about yourself.</p>
+
+				<form id="userSignupForm">
+					<label for="userFirstName">First Name</label>
+	  				<input type="text" name="userFirstName" id="userFirstName" required>
+
+	  				<label for="userLastName">Last Name</label>
+	  				<input type="text" name="userLastName" id="userLastName" required> 
+
+	  				<label for="username">Username</label>
+	  				<input type="text" name="username" id="username" required>  				
+
+	  				<label for="password">Password</label>
+	  				<input type="text" name="password" id="password" required>
+
+	  				<button type="submit" id="finishSignupBtn">Finish</button>	
+				</form>
+				
+	  			<button type="submit" id="cancelSignupBtn">Cancel</button>
+			</div>						
 			
 			<div class="startPage">				
 				<button type="submit" class="needNegotiatorBtn">I Need a Negotiator</button>				
@@ -63,21 +84,8 @@
 				</form>
 			</div>
 			
-			<div class="selectAreaPage">
-				<p>Give us a little info about yourself.</p>
-				<form id="selectAreaForm">
-					<label for="userFirstName">First Name</label>
-	  				<input type="text" name="userFirstName" id="userFirstName" required>
-
-	  				<label for="userLastName">Last Name</label>
-	  				<input type="text" name="userLastName" id="userLastName" required> 
-
-	  				<label for="username">Username</label>
-	  				<input type="text" name="username" id="username" required>  				
-
-	  				<label for="password">Password</label>
-	  				<input type="text" name="password" id="password" required>  				
-				
+			<div class="selectAreaPage">				
+				<form id="selectAreaForm">			
 				
 					<p>Choose A Location</p>
 					<select id="citySelection">

@@ -32,17 +32,37 @@ function loginAsUser()
 
 function signUpAsUser()
 {
-    // Take in required info including new login credentials
-    // After valid credentials are entered, add new user to the database collection that holds users, otherwise show meaningful error msg
-    
-    // After user sign-up, load the Start page
-    renderStartPage();
+    // Hide Start Page
+    $('.startPage').hide();
+
+    // Hide Landing Page
+    $('.landingPage').hide();
+
+    // Show Sign Up Page
+    $('.userSignupPage').show();
+
+    // If user clicks "Finish" button, take in required info including new login credentials
+    // After valid credentials are entered, add new user to the database collection that holds users and render the Start Page
+    //otherwise show meaningful error msg
+    $('#finishSignupBtn').on('click', function(event){
+
+        event.preventDefault();
+
+        // Store user choices in variables
+        userFirstName = $('#userFirstName').val(); 
+        userLastName = $('#userLastName').val();         
+        loginUserName = $('#username').val();
+        loginPassword = $('#password').val();
+    });
+
+    // If user clicks "Cancel" button, reload the app
+    // Listen for click on 'Restart' button
+    $('#cancelSignupBtn').on('click', function(){
+
+        // Go back to Start Page
+        location.reload();
+    }); 
 }
-
-
-
-
-// ********************START HERE FOR MVP, AND WORRY ABOUT LOGINS & SIGN-INS LATER??********************************
 
 function renderLandingPage()
 {
@@ -52,12 +72,19 @@ function renderLandingPage()
     $('.itemDetailPage').hide();
     $('.chooseNegotiatorPage').hide();
     $('.negotiatorSignupPage').hide();
+    $('.userSignupPage').hide();
 
     // Listen for click on 'Get Started' button
     $('#getStartedBtn').on('click', function(){
 
         // Take user to Start Page
         renderStartPage();
+    });
+
+    // Listen for click on 'Sign Up' button
+    $('#signupBtn').on('click', function(){
+
+        signUpAsUser();
     });
 }
 
@@ -173,12 +200,8 @@ function selectArea()
         // Prevent default form submission behavior
         event.preventDefault();
 
-        // Store user choices in variables
-        userFirstName = $('#userFirstName').val(); 
-        userLastName = $('#userLastName').val(); 
-        cityChoice = $('#citySelection').val();
-        loginUserName = $('#username').val();
-        loginPassword = $('#password').val();     
+        // Store city choice in variables        
+        cityChoice = $('#citySelection').val();        
 
         // Hide the Select Area Page
         $('.selectAreaPage').hide();
