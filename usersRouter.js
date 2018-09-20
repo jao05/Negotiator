@@ -56,3 +56,5 @@ router.post("/", jsonParser, (req, res) => {
 
 // PUT
 // DELETE
+
+module.export.router;
