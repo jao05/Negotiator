@@ -44,7 +44,7 @@ function signUpAsUser()
     // If user clicks "Finish" button, take in required info including new login credentials
     // After valid credentials are entered, add new user to the database collection that holds users and render the Start Page
     //otherwise show meaningful error msg
-    $('#finishSignupBtn').on('click', function(event){
+    $('#finishSignupBtn').on('submit', function(event){
 
         event.preventDefault();
 
@@ -53,6 +53,32 @@ function signUpAsUser()
         userLastName = $('#userLastName').val();         
         loginUserName = $('#username').val();
         loginPassword = $('#password').val();
+
+        let data = {
+            
+            firstName: userFirstName,
+            lastName: userLastName,
+            username: loginUserName,
+            password: loginPassword
+       };
+
+       // Using data stored in variables, create an object to add new negotiator to the database collection that holds Negotiators
+       let settings = { 
+            url: "/users", 
+            type: 'POST', 
+            data: JSON.stringify(data), 
+            dataType: 'json', 
+            contentType: 'application/json; charset= utf-8', 
+            success: function(data) { 
+                console.log(data);
+            }
+       };
+        
+       // Pass the object as parameter for the AJAX request
+       $.ajax(settings);
+
+       // Display user sign-up message on screen
+       $('.userSignupPage').html(`<p>Thanks ${ userFirstName }, you're all signed up!</p>`);
     });
 
     // If user clicks "Cancel" button, reload the app
