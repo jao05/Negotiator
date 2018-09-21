@@ -69,21 +69,31 @@ function signUpAsUser()
             data: JSON.stringify(data), 
             dataType: 'json', 
             contentType: 'application/json; charset= utf-8', 
-            success: function(data) { 
-                console.log(data);// ISN'T HAPPENING***********************************
+            success: function(responseData) { 
+                // Display user sign-up message on screen                
+                $('.userSignupPage').html(`<p>Thanks ${ responseData.fullName }, you're all signed up!</p>` + 
+                    `<button type='submit' id='backToHomeBtn'>Back to Home</button>`);
+
+                // Listen for click on 'backToHomeBtn'
+                $('#backToHomeBtn').on('click', function(event){
+
+                    event.preventDefault();
+
+                    // Go back to Start Page
+                    location.reload();
+                });
             }
        };
         
        // Pass the object as parameter for the AJAX request
-       $.ajax(settings);
-
-       // Display user sign-up message on screen
-       $('.userSignupPage').html(`<p>Thanks ${ data.fullName }, you're all signed up!</p>`);
+       $.ajax(settings);       
     });
 
     // If user clicks "Cancel" button, reload the app
     // Listen for click on 'Restart' button
-    $('#cancelSignupBtn').on('click', function(){
+    $('#cancelSignupBtn').on('click', function(event){
+
+        event.preventDefault();
 
         // Go back to Start Page
         location.reload();
