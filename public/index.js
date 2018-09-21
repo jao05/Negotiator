@@ -209,8 +209,8 @@ function signUpAsNegotiator()
             data: JSON.stringify(data), 
             dataType: 'json', 
             contentType: 'application/json; charset= utf-8', 
-            success: function(data) { 
-                console.log(data);
+            success: function(responseNegotiatorData) { 
+                console.log(responseNegotiatorData);
             }
        };
         
