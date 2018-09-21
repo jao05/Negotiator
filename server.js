@@ -21,10 +21,7 @@ mongoose.Promise = global.Promise;
 // app like PORT and DATABASE_URL
 const {PORT, DATABASE_URL} = require('./config');
 
-// Import the Negotiator model
-const { Negotiator } = require("./models");
 
-/***************************************************THROWING ERROR!!!!
 // Import the user router
 const usersRouter = require('./usersRouter');
 
@@ -33,7 +30,10 @@ const usersRouter = require('./usersRouter');
 // router instance we've imported. Remember,
 // this router instance acts as a modular, mini-express app.
 app.use("/users", usersRouter);
-********************************************************************/
+
+
+// Import the Negotiator model
+const { Negotiator } = require("./models");
 
 // GET requests by metroArea & expertise to '/negotiators' endpoint
 app.get("/negotiators", (req, res) => {  

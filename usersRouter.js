@@ -8,7 +8,7 @@ const {User} = require('./models');
 
 // send back JSON representation of all users
 // on GET requests to root
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   
   User.find()
 
@@ -55,7 +55,7 @@ router.post("/", jsonParser, (req, res) => {
 });
 
 // PUT
-app.put("/users/:id", jsonParser, (req, res) => {
+router.put("/users/:id", jsonParser, (req, res) => {
   // ensure that the id in the request path and the one in request body match
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message =
@@ -85,10 +85,10 @@ app.put("/users/:id", jsonParser, (req, res) => {
 });
 
 // DELETE
-app.delete("/users/:id", (req, res) => {
+router.delete("/users/:id", (req, res) => {
   User.findByIdAndRemove(req.params.id)
     .then(user => res.status(204).end())
     .catch(err => res.status(500).json({ message: "Internal server error" }));
 });
 
-module.export.router;
+module.exports = router;
