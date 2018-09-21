@@ -8,7 +8,7 @@ const {User} = require('./models');
 
 // send back JSON representation of all users
 // on GET requests to root
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   
   User.find()
 
@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
 
 // POST requests to '/users' endpoint
 router.post("/", jsonParser, (req, res) => {
-  const requiredFields = ["firstName", "lastName", "metroArea", "selectedItem", "username", "password"];
+  const requiredFields = ["firstName", "lastName", "username", "password"];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -41,9 +41,7 @@ router.post("/", jsonParser, (req, res) => {
 
   User.create({
     firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    metroArea: req.body.metroArea,
-    selectedItem: req.body.selectedItem,
+    lastName: req.body.lastName,    
     username: req.body.username,
     password: req.body.password,
   })
@@ -57,4 +55,40 @@ router.post("/", jsonParser, (req, res) => {
 });
 
 // PUT
+router.put("/users/:id", jsonParser, (req, res) => {
+  // ensure that the id in the request path and the one in request body match
+  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+    const message =
+      `Request path id (${req.params.id}) and request body id ` +
+      `(${req.body.id}) must match`;
+    console.error(message);
+    return res.status(400).json({ message: message });
+  }
+
+  // we only support a subset of fields being updateable.
+  // if the user sent over any of the updatableFields, we udpate those values
+  // in document
+  const toUpdate = {};
+  const updateableFields = ["username", "password"];
+
+  updateableFields.forEach(field => {
+    if (field in req.body) {
+      toUpdate[field] = req.body[field];
+    }
+  });
+
+  User
+    // all key/value pairs in toUpdate will be updated -- that's what `$set` does
+    .findByIdAndUpdate(req.params.id, { $set: toUpdate })
+    .then(user => res.status(201).json(user.serialize()))
+    .catch(err => res.status(500).json({ message: "Internal server error" }));
+});
+
 // DELETE
+router.delete("/users/:id", (req, res) => {
+  User.findByIdAndRemove(req.params.id)
+    .then(user => res.status(204).end())
+    .catch(err => res.status(500).json({ message: "Internal server error" }));
+});
+
+module.exports = router;

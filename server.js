@@ -21,10 +21,7 @@ mongoose.Promise = global.Promise;
 // app like PORT and DATABASE_URL
 const {PORT, DATABASE_URL} = require('./config');
 
-// Import the Negotiator model
-const { Negotiator } = require("./models");
 
-/***********************************************USERS NOT NECESSARY FOR PROJECT??
 // Import the user router
 const usersRouter = require('./usersRouter');
 
@@ -33,11 +30,14 @@ const usersRouter = require('./usersRouter');
 // router instance we've imported. Remember,
 // this router instance acts as a modular, mini-express app.
 app.use("/users", usersRouter);
-***********************************************************/
 
-// GET requests to '/negotiators' endpoint
+
+// Import the Negotiator model
+const { Negotiator } = require("./models");
+
+// GET requests by metroArea & expertise to '/negotiators' endpoint
 app.get("/negotiators", (req, res) => {  
-  console.log(`CHOSENCITY: ${req.query.chosenCity}`);
+  
   Negotiator.find({metroArea: req.query.chosenCity , expertise: req.query.chosenItem})
     
     // success callback: for each negotiator we got back, we'll
@@ -48,6 +48,23 @@ app.get("/negotiators", (req, res) => {
         negotiators: negotiators.map(negotiator => negotiator.serialize())
       });
     })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    });
+});
+
+// GET requests by ID to '/negotiators' endpoint
+app.get("/negotiators/:id", (req, res) => {  
+  
+  Negotiator.findById(req.query.id)
+    
+    // success callback: for negotiator we got back, we'll
+    // call the `.serialize` instance method we've created in
+    // models.js in order to only expose the data we want the API return.    
+    .then(negotiator => {
+      res.json(negotiator.serialize())
+      })    
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: "Internal server error" });

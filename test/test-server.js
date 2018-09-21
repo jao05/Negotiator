@@ -181,7 +181,7 @@ describe('Serving HTML', function() {
           expect(res).to.be.json;
           expect(res.body).to.be.a('object');
           expect(res.body).to.include.keys(
-            'agentName', 'metroArea', 'expertise'); // *********Should we only expect keys sent back by serialize function here??******** 
+            'agentName', 'metroArea', 'expertise'); 
           expect(res.body.metroArea).to.equal(newNegotiator.metroArea);
           // because Mongo should have created id on insertion
           expect(res.body.id).to.not.be.null;

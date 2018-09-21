@@ -1,56 +1,3 @@
-let MOCK_NEGOTIATOR_AGENTS = {
-    "agents": [
-        {
-            "id": "1111111",
-            "expertise": "Cars",            
-            "agentName": "John Carson",
-            "metroArea": "New York City"           
-        },
-        {
-            "id": "2222222",
-            "expertise": "Cars",            
-            "agentName": "Jane Doe",
-            "metroArea": "Atlanta"          
-        },
-        {
-            "id": "333333",
-            "expertise": "Homes",            
-            "agentName": "Jim Homer",
-            "metroArea": "Los Angeles"         
-        },
-        {
-            "id": "4444444",
-            "expertise": "Boats",            
-            "agentName": "Jackie Boatman",
-            "metroArea": "Miami"          
-        },
-        {
-            "id": "555555",
-            "expertise": "Cars",            
-            "agentName": "Joe Schmoe",
-            "metroArea": "New York City"           
-        },
-        {
-            "id": "666666",
-            "expertise": "Planes",            
-            "agentName": "Jet Li",
-            "metroArea": "Hong Kong"          
-        },
-        {
-            "id": "777777",
-            "expertise": "Homes",            
-            "agentName": "Napoleon Bonaparte",
-            "metroArea": "Paris"         
-        },
-        {
-            "id": "888888",
-            "expertise": "Homes",            
-            "agentName": "Hillary Bush",
-            "metroArea": "Miami"          
-        }
-    ]
-};
-
 let cityChoice;
 let userFirstName;
 let userLastName;
@@ -85,17 +32,73 @@ function loginAsUser()
 
 function signUpAsUser()
 {
-    // Take in required info including new login credentials
-    // After valid credentials are entered, add new user to the database collection that holds users, otherwise show meaningful error msg
-    
-    // After user sign-up, load the Start page
-    renderStartPage();
+    // Hide Start Page
+    $('.startPage').hide();
+
+    // Hide Landing Page
+    $('.landingPage').hide();
+
+    // Show Sign Up Page
+    $('.userSignupPage').show();
+
+    // If user clicks "Finish" button, take in required info including new login credentials
+    // After valid credentials are entered, add new user to the database collection that holds users and render the Start Page
+    //otherwise show meaningful error msg
+    $('#userSignupForm').on('submit', function(event){
+
+        event.preventDefault();
+
+        // Store user choices in variables
+        userFirstName = $('#userFirstName').val(); 
+        userLastName = $('#userLastName').val();         
+        loginUserName = $('#username').val();
+        loginPassword = $('#password').val();
+
+        let data = {
+            
+            firstName: userFirstName,
+            lastName: userLastName,
+            username: loginUserName,
+            password: loginPassword
+       };
+
+       // Using data stored in variables, create an object to add new user to the database collection that holds users
+       let settings = { 
+            url: "/users", 
+            type: 'POST', 
+            data: JSON.stringify(data), 
+            dataType: 'json', 
+            contentType: 'application/json; charset= utf-8', 
+            success: function(responseData) { 
+                // Display user sign-up message on screen                
+                $('.userSignupPage').html(`<p>Thanks ${ responseData.fullName }, you're all signed up!</p>` + 
+                    `<button type='submit' id='backToHomeBtn'>Back to Home</button>`);
+
+                // Listen for click on 'backToHomeBtn'
+                $('#backToHomeBtn').on('click', function(event){
+
+                    event.preventDefault();
+
+                    // Go back to Start Page
+                    location.reload();
+                });
+            }
+       };
+        
+       // Pass the object as parameter for the AJAX request
+       $.ajax(settings);       
+    });
+
+    // If user clicks "Cancel" button, reload the app
+    // Listen for click on 'Restart' button
+    $('#cancelSignupBtn').on('click', function(event){
+
+        event.preventDefault();
+
+        // Go back to Start Page
+        location.reload();
+    }); 
 }
-
-
-
-
-// ********************START HERE FOR MVP, AND WORRY ABOUT LOGINS & SIGN-INS LATER??********************************
 
 function renderLandingPage()
 {
@@ -105,12 +108,19 @@ function renderLandingPage()
     $('.itemDetailPage').hide();
     $('.chooseNegotiatorPage').hide();
     $('.negotiatorSignupPage').hide();
+    $('.userSignupPage').hide();
 
     // Listen for click on 'Get Started' button
     $('#getStartedBtn').on('click', function(){
 
         // Take user to Start Page
         renderStartPage();
+    });
+
+    // Listen for click on 'Sign Up' button
+    $('#signupBtn').on('click', function(){
+
+        signUpAsUser();
     });
 }
 
@@ -173,7 +183,7 @@ function signUpAsNegotiator()
 {
     // Take in required info
     // Listen for Negotiator sign-up form submission
-    $('.negotiatorSignupDoneBtn').on('click', function(event){
+    $('.negotiatorSignupForm').on('submit', function(event){
 
        // Prevent default form submission behavior
        event.preventDefault();
@@ -199,8 +209,8 @@ function signUpAsNegotiator()
             data: JSON.stringify(data), 
             dataType: 'json', 
             contentType: 'application/json; charset= utf-8', 
-            success: function(data) { 
-                console.log(data);
+            success: function(responseNegotiatorData) { 
+                console.log(responseNegotiatorData);
             }
        };
         
@@ -226,12 +236,8 @@ function selectArea()
         // Prevent default form submission behavior
         event.preventDefault();
 
-        // Store user choices in variables
-        userFirstName = $('#userFirstName').val(); 
-        userLastName = $('#userLastName').val(); 
-        cityChoice = $('#citySelection').val();
-        loginUserName = $('#username').val();
-        loginPassword = $('#password').val();     
+        // Store city choice in variables        
+        cityChoice = $('#citySelection').val();        
 
         // Hide the Select Area Page
         $('.selectAreaPage').hide();
@@ -348,14 +354,15 @@ function makeNegotiatorSelection()
         // Store selected negotiator's name in a varible
         negotiatorSelection = $('input[name=negotiatorChoices]:checked').val();
         
-        // Make a GET request to get ID of the negotiator
+        // Make a GET request to get ID of the negotiator***************
+
         // Make a PUT request to create the user, save the negotiator to the user's object
         
         
         // Show Negotiator selection confirmation & message
         $('#matchedAgents').hide();
         $('.chooseNegotiatorPage').append(`<p>Congrats ${userFirstName}, you will be represented well by ${negotiatorSelection}!</p>` + 
-            `<p>You'll be contacted shortly to provide more info and to get started on your purchase.</p>`);  
+            `<p>You'll be contacted shortly to provide more info so that we can get started on your purchase.</p>`);  
         
         // Change the text of the 'Restart' button to 'Done'   
         $('#restartBtn').text('Done');
@@ -378,37 +385,8 @@ function chooseDifferentItem()
     selectItemAndAddDetail();
 }
 
-
-// ************** TAKEN FORM THINKFUL PROGRAM - TOP ****************************
-
-function getAgents(callbackFn) {
-    setTimeout(function(){ callbackFn(MOCK_NEGOTIATOR_AGENTS)}, 100);
-}
-
-// this function stays the same when we connect
-// to real API later
-function displayAgents(data) {
-    for (index in data.agents) {
-       $('#matchedAgents').html(
-        '<p>' + data.agents[index].agentName + '</p>');
-    }
-}
-
-// this function can stay the same even when we
-// are connecting to real API
-function getAndDisplayAgents() {
-    getAgents(displayAgents);
-
-    // Hide Item Detail Page
-    $('.itemDetailPage').hide();
-
-    // Show Agents List
-    $('.chooseNegotiatorPage').show();
-}
-
 $(function() {
     
     renderLandingPage();    
 })
 
-// ************** TAKEN FORM THINKFUL PROGRAM - BOTTOM ****************************

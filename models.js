@@ -34,8 +34,8 @@ negotiatorSchema.methods.serialize = function() {
 const userSchema = mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  metroArea: { type: String, required: true },
-  selectedItem: { type: String, required: true },
+  metroArea: { type: String },
+  selectedItem: { type: String },
   selectedNegotiator: { type: mongoose.Schema.Types.ObjectId, ref: 'Negotiator' },
   username: { type: String, required: true },
   password: { type: String, required: true }
