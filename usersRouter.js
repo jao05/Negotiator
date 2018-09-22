@@ -39,6 +39,7 @@ router.post("/", jsonParser, (req, res) => {
     }
   }  
 
+  // To hash the password for security
   return User.hashPassword(req.body.password)    
     .then(hash => {
       return User.create({
@@ -82,6 +83,7 @@ router.put("/", jsonParser, (req, res) => {
     }
   });
 
+  // Additionally, this is needed to update the user's selected negotiator
   Negotiator.findById(req.body.selectedNegotiator)
   .then(negotiator =>{
     toUpdate["selectedNegotiator"] = negotiator;

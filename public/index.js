@@ -348,17 +348,15 @@ function makeNegotiatorSelection()
         // Store selected negotiator's name in a varible
         negotiatorSelection = $('input[name=negotiatorChoices]:checked').val();
         
-        // Make a GET request to get ID of the negotiator***************
-
         // Make a PUT request to store new values to user's object
-        console.log(JSON.parse(localStorage.getItem('user')).id);
+        
         let data = {
+            // Needed to parse this to JSON to use....where's the other side??*********************
             userID: JSON.parse(localStorage.getItem('user')).id,
             metroArea: cityChoice,
             selectedItem: itemChoice,
             selectedNegotiator: negotiatorSelection            
-       };
-       console.log(data); //***************************************
+       };       
        
        let settings = { 
             url: "/users", 
