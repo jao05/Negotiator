@@ -2,6 +2,8 @@
 
 const mongoose = require("mongoose");
 
+const bcrypt = require('bcryptjs');
+
 // this is our schema to represent a negotiator
 const negotiatorSchema = mongoose.Schema({
   agentFirstName: { type: String, required: true },
@@ -62,6 +64,14 @@ userSchema.methods.serialize = function() {
     selectedItem: this.selectedItem,
     metroArea: this.metroArea
   };
+};
+
+userSchema.methods.validatePassword = function(password) {
+  return bcrypt.compare(password, this.password);
+};
+
+userSchema.statics.hashPassword = function(password) {
+  return bcrypt.hash(password, 10);
 };
 
 // note that all instance methods and virtual properties on our

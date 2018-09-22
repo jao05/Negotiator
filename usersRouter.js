@@ -4,7 +4,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-const {User} = require('./models');
+const {User, Negotiator} = require('./models');
 
 // send back JSON representation of all users
 // on GET requests to root
@@ -39,23 +39,27 @@ router.post("/", jsonParser, (req, res) => {
     }
   }  
 
-  User.create({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,    
-    username: req.body.username,
-    password: req.body.password,
-  })
-  .then(user => {
-    res.status(201).json(user.serialize());
-  })
-  .catch(err => {
-    console.error(err);
-    res.status(500).json({ message: "Internal server error" });
-  });
+  return User.hashPassword(req.body.password)    
+    .then(hash => {
+      return User.create({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        username: req.body.username,
+        password: hash        
+      });
+    })  
+    .then(user => {
+      res.status(201).json(user.serialize());
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    });
 });
 
 // PUT
-router.put("/users/:id", jsonParser, (req, res) => {
+router.put("/", jsonParser, (req, res) => {
+  /*
   // ensure that the id in the request path and the one in request body match
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message =
@@ -64,12 +68,13 @@ router.put("/users/:id", jsonParser, (req, res) => {
     console.error(message);
     return res.status(400).json({ message: message });
   }
+  */
 
   // we only support a subset of fields being updateable.
   // if the user sent over any of the updatableFields, we udpate those values
   // in document
   const toUpdate = {};
-  const updateableFields = ["username", "password"];
+  const updateableFields = ["metroArea", "selectedItem", "selectedNegotiator"];
 
   updateableFields.forEach(field => {
     if (field in req.body) {
@@ -77,11 +82,15 @@ router.put("/users/:id", jsonParser, (req, res) => {
     }
   });
 
-  User
+  Negotiator.findById(req.body.selectedNegotiator)
+  .then(negotiator =>{
+    toUpdate["selectedNegotiator"] = negotiator;
+    User
     // all key/value pairs in toUpdate will be updated -- that's what `$set` does
-    .findByIdAndUpdate(req.params.id, { $set: toUpdate })
+    .findByIdAndUpdate(req.body.userID, { $set: toUpdate })
     .then(user => res.status(201).json(user.serialize()))
     .catch(err => res.status(500).json({ message: "Internal server error" }));
+  })  
 });
 
 // DELETE

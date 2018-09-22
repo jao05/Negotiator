@@ -70,18 +70,12 @@ function signUpAsUser()
             dataType: 'json', 
             contentType: 'application/json; charset= utf-8', 
             success: function(responseData) { 
+                console.log(responseData);
+                localStorage.setItem('user', JSON.stringify(responseData));
                 // Display user sign-up message on screen                
-                $('.userSignupPage').html(`<p>Thanks ${ responseData.fullName }, you're all signed up!</p>` + 
-                    `<button type='submit' id='backToHomeBtn'>Back to Home</button>`);
+                $('.userSignupPage').html(`<p>Thanks ${ responseData.fullName }, you're all signed up!</p>`);
 
-                // Listen for click on 'backToHomeBtn'
-                $('#backToHomeBtn').on('click', function(event){
-
-                    event.preventDefault();
-
-                    // Go back to Start Page
-                    location.reload();
-                });
+                $('.startPage').show();                
             }
        };
         
@@ -313,7 +307,7 @@ function generateNegotiatorChoices(data)
     // add the string to the negotiatorStrings array
     for ( let neg = 0; neg < data.negotiators.length; neg++)
     {
-        negotiatorStrings.push(`<input type="radio" name="negotiatorChoices" id="choice${neg + 1}" value="${data.negotiators[neg].agentName}" required>${data.negotiators[neg].agentName}`);
+        negotiatorStrings.push(`<input type="radio" name="negotiatorChoices" id="choice${neg + 1}" value="${data.negotiators[neg].id}" required>${data.negotiators[neg].agentName}`);
     }
 
     // If no negotiators fit the criteria (meaning there are none in db), return an appropriate message
@@ -356,16 +350,37 @@ function makeNegotiatorSelection()
         
         // Make a GET request to get ID of the negotiator***************
 
-        // Make a PUT request to create the user, save the negotiator to the user's object
+        // Make a PUT request to store new values to user's object
+        console.log(JSON.parse(localStorage.getItem('user')).id);
+        let data = {
+            userID: JSON.parse(localStorage.getItem('user')).id,
+            metroArea: cityChoice,
+            selectedItem: itemChoice,
+            selectedNegotiator: negotiatorSelection            
+       };
+       console.log(data); //***************************************
+       
+       let settings = { 
+            url: "/users", 
+            type: 'PUT', 
+            data: JSON.stringify(data), 
+            dataType: 'json', 
+            contentType: 'application/json; charset= utf-8', 
+            success: function(responseNegotiatorData) { 
+                console.log(responseNegotiatorData);
+
+                // Show Negotiator selection confirmation & message
+                $('#matchedAgents').hide();
+                $('.chooseNegotiatorPage').append(`<p>Congrats ${userFirstName}, you will be represented well by ${negotiatorSelection}!</p>` + 
+                    `<p>You'll be contacted shortly to provide more info so that we can get started on your purchase.</p>`);  
         
+                // Change the text of the 'Restart' button to 'Done'   
+                $('#restartBtn').text('Done');
+            }
+       };
         
-        // Show Negotiator selection confirmation & message
-        $('#matchedAgents').hide();
-        $('.chooseNegotiatorPage').append(`<p>Congrats ${userFirstName}, you will be represented well by ${negotiatorSelection}!</p>` + 
-            `<p>You'll be contacted shortly to provide more info so that we can get started on your purchase.</p>`);  
-        
-        // Change the text of the 'Restart' button to 'Done'   
-        $('#restartBtn').text('Done');
+       // Pass the object as parameter for the AJAX request
+       $.ajax(settings);        
     });    
 }
 
@@ -388,5 +403,6 @@ function chooseDifferentItem()
 $(function() {
     
     renderLandingPage();    
+    makeUserTypeSelection();
 })
 
