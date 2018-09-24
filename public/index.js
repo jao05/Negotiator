@@ -104,12 +104,15 @@ function renderLandingPage()
     $('.negotiatorSignupPage').hide();
     $('.userSignupPage').hide();
 
+    /*
     // Listen for click on 'Get Started' button
+    // Add to Start Page if this block is made active....<button type="submit" id="getStartedBtn">Log In</button>
     $('#getStartedBtn').on('click', function(){
 
         // Take user to Start Page
         renderStartPage();
     });
+    */
 
     // Listen for click on 'Sign Up' button
     $('#signupBtn').on('click', function(){
