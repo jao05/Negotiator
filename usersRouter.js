@@ -76,11 +76,12 @@ router.put("/", jsonParser, (req, res) => {
   // Additionally, this is needed to update the user's selected negotiator
   Negotiator.findById(req.body.selectedNegotiator)
   .then(negotiator =>{
+    console.log(negotiator);
     toUpdate["selectedNegotiator"] = negotiator;
     User
     // all key/value pairs in toUpdate will be updated -- that's what `$set` does
     .findByIdAndUpdate(req.body.userID, { $set: toUpdate })
-    .then(user => res.status(201).json(user.serialize()))
+    .then(user => res.status(201).json(negotiator.serialize()))
     .catch(err => res.status(500).json({ message: "Internal server error" }));
   })  
 });

@@ -70,7 +70,7 @@ function signUpAsUser()
             dataType: 'json', 
             contentType: 'application/json; charset= utf-8', 
             success: function(responseData) { 
-                console.log(responseData);
+                console.log(responseData); //********************************************
                 localStorage.setItem('user', JSON.stringify(responseData));
                 // Display user sign-up message on screen                
                 $('.userSignupPage').html(`<p>Thanks ${ responseData.fullName }, you're all signed up!</p>`);
@@ -306,7 +306,7 @@ function generateNegotiatorChoices(data)
     // For each matched negotiator returned, create a string with the negotiator's info and
     // add the string to the negotiatorStrings array
     for ( let neg = 0; neg < data.negotiators.length; neg++)
-    {
+    {        
         negotiatorStrings.push(`<input type="radio" name="negotiatorChoices" id="choice${neg + 1}" value="${data.negotiators[neg].id}" required>${data.negotiators[neg].agentName}`);
     }
 
@@ -369,7 +369,7 @@ function makeNegotiatorSelection()
 
                 // Show Negotiator selection confirmation & message
                 $('#matchedAgents').hide();
-                $('.chooseNegotiatorPage').append(`<p>Congrats ${userFirstName}, you will be represented well by ${negotiatorSelection}!</p>` + 
+                $('.chooseNegotiatorPage').append(`<p>Congrats ${userFirstName}, you will be represented well by ${responseNegotiatorData.agentName}!</p>` + 
                     `<p>You'll be contacted shortly to provide more info so that we can get started on your purchase.</p>`);  
         
                 // Change the text of the 'Restart' button to 'Done'   
