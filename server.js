@@ -6,6 +6,9 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser'); 
 const jsonParser = bodyParser.json();
 
+// Import passport
+const passport = require('passport');
+
 app.use(express.static('public'));
 app.use(morgan('common'));
 
@@ -24,6 +27,12 @@ const {PORT, DATABASE_URL} = require('./config');
 
 // Import the user router
 const usersRouter = require('./usersRouter');
+
+const localStrategy = require('./strategies');
+passport.use(localStrategy);
+
+app.use(passport.initialize()); 
+app.use(passport.session());
 
 // when requests come into `/users`
 // we'll route them to the express

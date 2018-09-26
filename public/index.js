@@ -11,23 +11,51 @@ let itemModel;
 let negotiatorSelection
 
 
-function showLandingPage()
-{
-    // Load landing page
-    // Give option to sign-up or login
-    
-    // If user alreay exists...login
-    loginAsUser();
-
-    // If user doesn't exist...sign-up
-    signUpAsUser(); 
-}
 
 function loginAsUser()
 {
-    // Take in required info including new login credentials
-    // After valid credentials are provided, load the Start page, otherwise give error msg
-    renderStartPage();
+    // After credentials are submitted, validate them
+    $('.loginForm').on('submit', function(event){
+
+        event.preventDefault();
+
+        // Take in required info including new login credentials
+        let loginUserName = $('#loginUsername').val();
+        let loginPassword = $('#loginPassword').val();
+
+        // Make POST request
+        //If credentials are valid, load the Start page,
+        let data = {           
+            
+            username: loginUserName,
+            password: loginPassword
+       };
+
+       // Using data stored in variables, create an object to add new user to the database collection that holds users
+       let settings = { 
+            url: "/users/login", 
+            type: 'POST', 
+            data: JSON.stringify(data), 
+            dataType: 'json', 
+            contentType: 'application/json; charset= utf-8', 
+            success: function(responseData) { 
+                console.log(responseData); //********************************************
+                localStorage.setItem('user', JSON.stringify(responseData));
+                renderStartPage();
+            },
+            error: function(responseData){
+
+                console.log(responseData); //*******************************
+            }
+       };
+        
+       // Pass the object as parameter for the AJAX request
+       $.ajax(settings);
+
+        
+
+        //****************otherwise give error msg***********handle on front end? back end?
+    });    
 }
 
 function signUpAsUser()
@@ -97,6 +125,7 @@ function signUpAsUser()
 function renderLandingPage()
 {
     // Hide all other pages
+    $('.loginPage').hide();
     $('.startPage').hide();    
     $('.selectAreaPage').hide();
     $('.itemDetailPage').hide();
@@ -104,15 +133,17 @@ function renderLandingPage()
     $('.negotiatorSignupPage').hide();
     $('.userSignupPage').hide();
 
-    /*
-    // Listen for click on 'Get Started' button
-    // Add to Start Page if this block is made active....<button type="submit" id="getStartedBtn">Log In</button>
-    $('#getStartedBtn').on('click', function(){
+    
+    // Listen for click on 'Login' button   
+    $('#loginBtn').on('click', function(){
 
-        // Take user to Start Page
-        renderStartPage();
+        // Show Login Page
+        $('.loginPage').show();
+
+        // Hide Landing Page
+        $('.landingPage').hide();        
     });
-    */
+    
 
     // Listen for click on 'Sign Up' button
     $('#signupBtn').on('click', function(){
@@ -403,7 +434,8 @@ function chooseDifferentItem()
 
 $(function() {
     
-    renderLandingPage();    
+    renderLandingPage();   
+    loginAsUser();
     makeUserTypeSelection();
 })
 

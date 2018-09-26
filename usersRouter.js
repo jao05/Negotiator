@@ -1,12 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
+const passport = require('passport');
+const localAuth = passport.authenticate('local', {session: false});
+
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const {User, Negotiator} = require('./models');
 
 // send back JSON representation of all users
+
+router.use(jsonParser);
+
 // on GET requests to root
 router.get("/", (req, res) => {
   
@@ -25,6 +31,10 @@ router.get("/", (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     });
 
+});
+
+router.post("/login", localAuth, (req, res) => {
+    console.log('login works....');
 });
 
 // POST requests to '/users' endpoint
