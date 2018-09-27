@@ -1,0 +1,71 @@
+*
+{
+	box-sizing: border-box;
+}
+
+main
+{
+	width: 60%;
+	margin: 5% auto;
+	text-align: center;	
+}
+
+header
+{
+	text-align: center;
+	padding-top: 5%;
+	font-size: 3em;
+}
+
+.landingPage p
+{
+	text-align: justify;	
+	font-size: 2em;
+	margin-bottom: 5%;
+}
+
+.landingPage button
+{
+	width: 33.33%;	
+	margin: 5%;
+	padding: 2.5% 0;
+	font-size: 1.5em;
+}
+
+.userSignupPage p
+{
+	
+	font-size: 2em;
+	margin-bottom: 10%;
+}
+
+#userSignupForm div, .loginForm div
+{
+	display: block;
+	margin: 2.5% auto;
+	font-size: 2em;
+	text-align: left;
+	width: 75%;
+}
+
+#userSignupForm input, .loginForm input
+{
+	width: 50%;
+	padding: 1%;
+	font-size: 1em;
+}
+
+#userSignupForm label, .loginForm label
+{
+	width: 30%;
+	display: inline-block;
+}
+
+#userSignupForm button, .loginForm button
+{
+	width: 33.33%;	
+	margin: 10% 5%;
+	padding: 2.5% 0;
+	font-size: 1.5em;
+}
+
