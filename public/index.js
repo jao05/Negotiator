@@ -341,7 +341,7 @@ function generateNegotiatorChoices(data)
     // add the string to the negotiatorStrings array
     for ( let neg = 0; neg < data.negotiators.length; neg++)
     {        
-        negotiatorStrings.push(`<input type="radio" name="negotiatorChoices" id="choice${neg + 1}" value="${data.negotiators[neg].id}" required>${data.negotiators[neg].agentName}`);
+        negotiatorStrings.push(`<div><input type="radio" name="negotiatorChoices" id="choice${neg + 1}" value="${data.negotiators[neg].id}" required>${data.negotiators[neg].agentName}</div>`);
     }
 
     // If no negotiators fit the criteria (meaning there are none in db), return an appropriate message
