@@ -24,7 +24,7 @@ header
 	margin-bottom: 5%;
 }
 
-.landingPage button, .startPage button, .selectAreaPage button, .itemDetailPage button, .chooseNegotiatorPage button, .negotiatorSignupPage button
+.landingPage button, .startPage button, .selectAreaPage button, .itemDetailPage button, .chooseNegotiatorPage button, .negotiatorSignupPage button, #cancelLoginBtn
 {
 	width: 33.33%;	
 	margin: 5%;
@@ -142,4 +142,9 @@ input[name='negotiatorChoices']
 .negotiatorSignupForm
 {
 	margin-top: 10%;
+}
+
+.loginForm
+{
+	display: inline;
 }

@@ -14,6 +14,15 @@ let negotiatorSelection
 
 function loginAsUser()
 {
+    // If users clicks Cancel button
+    $('#cancelLoginBtn').on('click', function(event){
+
+        event.preventDefault();
+
+        // Go back to Start Page
+        location.reload();
+    });
+
     // After credentials are submitted, validate them
     $('.loginForm').on('submit', function(event){
 
