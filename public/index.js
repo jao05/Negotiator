@@ -50,7 +50,11 @@ function loginAsUser()
             success: function(responseData) { 
                 console.log(responseData); //********************************************
                 localStorage.setItem('user', JSON.stringify(responseData));
-                renderStartPage();
+                
+                // Hide Login Page
+                $('.loginPage').hide();
+                $('#logoutBtn').show();
+                $('.startPage').show();
             },
             error: function(responseData){
 
@@ -111,7 +115,7 @@ function signUpAsUser()
                 localStorage.setItem('user', JSON.stringify(responseData));
                 // Display user sign-up message on screen                
                 $('.userSignupPage').html(`<p>Thanks ${ responseData.fullName }, you're all signed up!</p>`);
-
+                $('#logoutBtn').show();
                 $('.startPage').show();                
             }
        };
@@ -233,15 +237,15 @@ function signUpAsNegotiator()
        // Store form inputs into variables
        let negotiatorSignupLocation = $('#negotiatorSignupLocationSelection').val();
        let negotiatorSignupExpertise = $('#negotiatorSignupExpertiseSelection').val();
-       let negotiatorSignupFirstName = $('#agentFirstName').val();
-       let negotiatorSignupLastName = $('#agentLastName').val();
-       
+       let negotiatorFirstName = JSON.parse(localStorage.getItem('user')).firstName;
+       let negotiatorLastName = JSON.parse(localStorage.getItem('user')).lastName;
+       console.log(negotiatorFirstName);//********************************************
        let data = {
             
             metroArea: negotiatorSignupLocation,
             expertise: negotiatorSignupExpertise,
-            agentFirstName: negotiatorSignupFirstName,
-            agentLastName: negotiatorSignupLastName
+            agentFirstName: negotiatorFirstName,
+            agentLastName: negotiatorLastName
        };
 
        // Using data stored in variables, create an object to add new negotiator to the database collection that holds Negotiators
@@ -260,7 +264,7 @@ function signUpAsNegotiator()
        $.ajax(settings);
 
        // Display agent sign-up message on screen
-       $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorSignupFirstName }, you're all signed up and ready to negotiate in ${ negotiatorSignupLocation }!</p>` + 
+       $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorFirstName }, you're all signed up and ready to negotiate in ${ negotiatorSignupLocation }!</p>` + 
             `<p>You will receive notification when you have been matched with a client.</p>`
         );       
     });    
@@ -435,10 +439,38 @@ function chooseDifferentItem()
     selectItemAndAddDetail();
 }
 
+function checkLoginStatus()
+{
+    if (localStorage.getItem('user'))
+    {
+        $('.landingPage').hide();
+        $('.startPage').show();
+    }
+    else
+    {
+        $('logoutBtn').hide();
+    }
+}
+
+function logOut()
+{
+    $('#logoutBtn').on('click', function(){
+
+        // Clear user in localStorage
+        localStorage.removeItem('user');
+
+        $('#logoutBtn').hide();
+        $('.landingPage').show();
+        renderLandingPage();
+    });
+}
+
 $(function() {
-    
+        
     renderLandingPage();   
     loginAsUser();
+    checkLoginStatus();
+    logOut();
     makeUserTypeSelection();
 })
 

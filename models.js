@@ -60,6 +60,8 @@ userSchema.virtual("fullNameString").get(function() {
 userSchema.methods.serialize = function() {
   return {
     id: this._id,
+    firstName: this.firstName,
+    lastName: this.lastName,
     fullName: this.fullNameString,
     selectedItem: this.selectedItem,
     metroArea: this.metroArea

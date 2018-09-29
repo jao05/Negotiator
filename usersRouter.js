@@ -35,6 +35,7 @@ router.get("/", (req, res) => {
 
 router.post("/login", localAuth, (req, res) => {
     console.log('login works....');
+    res.status(200).json(req.user.serialize());
 });
 
 // POST requests to '/users' endpoint
