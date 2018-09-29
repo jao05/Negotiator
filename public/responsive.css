@@ -1,0 +1,80 @@
+@media only screen and (min-width: 320px) {
+
+  * 
+  {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  header
+  {
+  	font-size: 1.5em;
+  }
+
+  .landingPage p 
+  {
+    text-align: justify;
+    font-size: 1.5em;
+    margin-bottom: 10%;
+  }
+
+  .landingPage button, .startPage button, .selectAreaPage button, .itemDetailPage button, .chooseNegotiatorPage button, .negotiatorSignupPage button, #cancelLoginBtn 
+  {
+    width: 100%;
+    margin: 5%;
+    padding: 2.5% 0;
+    font-size: 1.5em;
+  }
+
+  #userSignupForm label, .loginForm label
+  {
+    width: 100%;
+    margin-top: 10%;
+    display: inline-block;
+  }
+
+  #userSignupForm input, .loginForm input, .negotiatorSignupPage input 
+  {
+    width: 100%;
+    padding: 1%;
+    font-size: 1em;
+  }
+
+  .loginForm button 
+  {
+    width: 100%;
+    margin: 10% 5%;
+    padding: 2.5% 0;
+    font-size: 1.5em;
+  }
+
+  .userSignupPage p, .selectAreaPage p, .itemDetailPage p, .chooseNegotiatorPage p, .negotiatorSignupPage p 
+  {
+    font-size: 2em;
+    margin-bottom: 10%;
+    text-align: center;
+  }
+
+  #userSignupForm button, .loginForm button 
+  {
+    width: 100%;
+    margin: 10% 5%;
+    padding: 2.5% 0;
+    font-size: 1.5em;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+
+  
+}
+
+@media only screen and (min-width: 640px) {
+
+  
+}
+
+@media only screen and (min-width: 768px) {
+
+  
+}
