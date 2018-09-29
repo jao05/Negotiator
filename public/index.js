@@ -120,8 +120,7 @@ function signUpAsUser()
        $.ajax(settings);       
     });
 
-    // If user clicks "Cancel" button, reload the app
-    // Listen for click on 'Restart' button
+    // If user clicks "Cancel" button, reload the app    
     $('#cancelSignupBtn').on('click', function(event){
 
         event.preventDefault();
@@ -194,6 +193,9 @@ function makeUserTypeSelection()
     $('.needNegotiatorBtn').on('click', function(){
        
 
+        // Hide User Signup page
+        $('.userSignupPage').hide();
+
         // Allow user to select the area in which the negotiation will take place
         selectArea();
 
@@ -204,6 +206,9 @@ function makeUserTypeSelection()
     // Listen for click on "Become A Negotiator" button
     $('.becomeNegotiatorBtn').on('click', function(){
         
+
+        // Hide User Signup page
+        $('.userSignupPage').hide();
 
         // Allow user to select the area in which the negotiation will take place
         signUpAsNegotiator();
@@ -311,12 +316,7 @@ function selectItemAndAddDetail()
             // then take-in & store item detail inputs from form into variables
             itemYear = $('#itemYear').val();
             itemMake = $('#itemMake').val();
-            itemModel = $('#itemModel').val();             
-
-            /*
-            // make an (mock)AJAX request using the variable as parameters
-            getAndDisplayAgents();
-            */
+            itemModel = $('#itemModel').val();                         
 
             // Hide Item Detail Page
             $('.itemDetailPage').hide();
@@ -325,12 +325,6 @@ function selectItemAndAddDetail()
             getNegotiatorChoices(cityChoice, itemChoice);
         });
     });  
-}
-
-function chooseDifferentCity()
-{
-    // Provide link to return to "Select Area Screen"
-    // **********Back button??**************
 }
 
 function getNegotiatorChoices(chosenCity, chosenItem)
@@ -415,7 +409,7 @@ function makeNegotiatorSelection()
                 $('.chooseNegotiatorPage').append(`<p>Congrats ${userFirstName}, you will be represented well by ${responseNegotiatorData.agentName}!</p>` + 
                     `<p>You'll be contacted shortly to provide more info so that we can get started on your purchase.</p>`);  
         
-                // Change the text of the 'Restart' button to 'Done'   
+                // Change the text of the 'Restart' button to 'Done'   **********************
                 $('#restartBtn').text('Done');
             }
        };
