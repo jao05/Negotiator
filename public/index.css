@@ -15,6 +15,7 @@ header
 	text-align: center;
 	padding-top: 5%;
 	font-size: 3em;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .landingPage p
@@ -23,6 +24,19 @@ header
 	font-size: 2em;
 	margin-bottom: 5%;
 }
+
+button
+{
+	background-color: #FFAD0B;
+	color: white;
+	border: transparent;
+	border-radius: 25px;
+}
+
+button:hover
+{
+	background-color: #E8A439;
+} 
 
 .landingPage button, .startPage button, .selectAreaPage button, .itemDetailPage button, .chooseNegotiatorPage button, .negotiatorSignupPage button, #cancelLoginBtn
 {

@@ -141,6 +141,32 @@
   .startPage button 
   {
     width: 50%;    
-    padding: 20% 0;    
+    padding: 10% 0;    
+  }
+
+  .landingPage button
+  {
+    margin: 5% auto;
+  }
+
+  .itemDetailPage select 
+  {
+    margin: 10% auto;
+  }
+
+  .itemDetailPage p
+  {
+    margin-bottom: 5%;
+  }
+
+  .itemDetailForm fieldset 
+  {
+    margin-top: 2%;
+    margin-bottom: 5%;
+  }
+
+  .negotiatorSignupPage p 
+  {    
+    margin-top: 20%;
   }
 }
