@@ -170,3 +170,16 @@
     margin-top: 20%;
   }
 }
+
+@media only screen and (min-width: 992px){
+
+  .loginForm button, #cancelLoginBtn, .landingPage button, .selectAreaPage button, .selectAreaPage select, .itemDetailPage select, .itemDetailPage button 
+  {
+    width: 50%;    
+  }
+
+  .itemDetailPage button
+  {
+    margin: 1% auto;
+  }
+}
