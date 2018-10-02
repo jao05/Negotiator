@@ -19,10 +19,26 @@
     margin-bottom: 10%;
   }
 
-  .landingPage button, .startPage button, .selectAreaPage button, .itemDetailPage button, .chooseNegotiatorPage button, .negotiatorSignupPage button, #cancelLoginBtn 
+  .landingPage button, .selectAreaPage button, .itemDetailPage button, .chooseNegotiatorPage button, .negotiatorSignupPage button, #cancelLoginBtn 
   {
     width: 100%;
     margin: 5%;
+    padding: 2.5% 0;
+    font-size: 1.5em;
+  }
+
+  .startPage button
+  {
+    width: 100%;
+    margin: 15% auto;
+    padding: 38.5% 0;
+    font-size: 2.5em;
+  }
+
+  .negotiatorSignupPage button
+  {
+    width: 100%;
+    margin: 10% auto;
     padding: 2.5% 0;
     font-size: 1.5em;
   }
@@ -56,10 +72,65 @@
     text-align: center;
   }
 
+  .negotiatorSignupPage p 
+  {
+    font-size: 2em;
+    margin-bottom: 5%;
+    text-align: center;
+    margin-top: 30%;
+  }
+
+  .negotiatorSignupPage select, .itemDetailPage select
+  {
+    width: 100%;
+  }
+
+  .itemDetailPage select
+  {
+    margin: 15% auto;
+  }
+
+  .selectAreaPage select 
+  {
+    padding: 2% 1%;
+    font-size: 1.5em;
+    width: 100%;
+  }
+
+  .selectAreaPage button, .itemDetailPage button
+  {
+    width: 100%;
+    margin: 15% auto;
+    padding: 2.5% 0;
+    font-size: 1.5em;
+  }
+
+  .itemDetailForm fieldset input 
+  {
+    padding: 2%;
+    width: 50%;
+    margin: 5% 0;
+  }
+
+  .itemDetailForm fieldset label 
+  {
+    width: 34%;
+    display: inline-block;
+    font-size: 1.5em;
+  }
+
   #userSignupForm button, .loginForm button 
   {
     width: 100%;
-    margin: 10% 5%;
+    margin: 10% auto;
+    padding: 2.5% 0;
+    font-size: 1.5em;
+  }
+
+  #cancelLoginBtn 
+  {
+    width: 100%;
+    margin: 5% auto;
     padding: 2.5% 0;
     font-size: 1.5em;
   }
