@@ -25,6 +25,16 @@ header
 	margin-bottom: 5%;
 }
 
+input
+{
+	background-color: #DDE8D2;
+}
+
+select
+{
+	background-color: #DDE8D2;
+}
+
 button
 {
 	background-color: #FFAD0B;

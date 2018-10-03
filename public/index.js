@@ -53,7 +53,7 @@ function loginAsUser()
                 
                 // Hide Login Page
                 $('.loginPage').hide();
-                $('#logoutBtn').show();
+                $('#logoutBtn').show(); //***********************************
                 $('.startPage').show();
             },
             error: function(responseData){
@@ -368,7 +368,7 @@ function displayNegotiatorChoices(arrayOfNegotiatorInfoStrings)
     // For each matched negotiator returned, display response negotiator as a radio button choice
     for( string = 0; string < arrayOfNegotiatorInfoStrings.length; string++)
     {
-        $('#chooseNegotiatorForm').append(arrayOfNegotiatorInfoStrings[string]);
+        $('#chooseNegotiatorForm').prepend(arrayOfNegotiatorInfoStrings[string]);
     }
 
     // Show the list of negotiators

@@ -4,7 +4,7 @@
   * 
   {
     box-sizing: border-box;
-    width: 100%;
+    /*width: 100%;*/
   }
 
   header
@@ -15,7 +15,7 @@
   .landingPage p 
   {
     text-align: justify;
-    font-size: 1.5em;
+    font-size: 1.2em;
     margin-bottom: 10%;
   }
 
@@ -119,6 +119,12 @@
     font-size: 1.5em;
   }
 
+  #chooseNegotiatorForm div
+  {
+    width: 100%;
+    margin: 5% auto;
+  }
+
   #userSignupForm button, .loginForm button 
   {
     width: 100%;
@@ -181,5 +187,10 @@
   .itemDetailPage button
   {
     margin: 1% auto;
+  }
+
+  .startPage button
+  {
+    margin: 10% auto;
   }
 }
