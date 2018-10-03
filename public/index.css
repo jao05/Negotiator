@@ -1,3 +1,8 @@
+html
+{
+	height: 100%;
+}
+
 *
 {
 	box-sizing: border-box;
@@ -16,6 +21,20 @@ header
 	padding-top: 5%;
 	font-size: 3em;
 	font-family: 'Open Sans', sans-serif;
+	color: white;
+}
+
+body
+{
+	background-image: url("https://cdn.pixabay.com/photo/2018/04/06/11/21/people-3295555_1280.jpg");
+	background-repeat: repeat-y;
+    background-size: cover;
+    
+}
+
+p
+{
+	color: white;
 }
 
 .landingPage p
@@ -23,6 +42,11 @@ header
 	text-align: justify;	
 	font-size: 2em;
 	margin-bottom: 5%;
+}
+
+label
+{
+	color: white;
 }
 
 input
@@ -44,8 +68,10 @@ button
 }
 
 button:hover
-{
-	background-color: #E8A439;
+{	
+	background-color: white;
+	color: #FFAD0B;
+	border: 2px solid #FFAD0B;
 } 
 
 .landingPage button, .startPage button, .selectAreaPage button, .itemDetailPage button, .chooseNegotiatorPage button, .negotiatorSignupPage button, #cancelLoginBtn
@@ -54,6 +80,14 @@ button:hover
 	margin: 5%;
 	padding: 2.5% 0;
 	font-size: 1.5em;
+}
+
+#loginError
+{
+	display: none;
+	color: red;
+	background-color: white;
+	text-align: center;
 }
 
 .userSignupPage p, .selectAreaPage p, .itemDetailPage p, .chooseNegotiatorPage p, .negotiatorSignupPage p
@@ -107,6 +141,11 @@ button:hover
 	width: 33%;	
 }
 
+.itemDetailForm legend
+  {
+    color: white;
+  }
+
 .itemDetailForm fieldset
 {
 	margin-top: 5%;
@@ -138,6 +177,7 @@ button:hover
 	margin: 0 auto;
 	font-size: 2em;
 	margin-bottom: 4%;
+	color: white;
 }
 
 input[name='negotiatorChoices'] 

@@ -184,6 +184,11 @@
     width: 50%;    
   }
 
+  #userSignupForm button
+  {
+    width: 50%;
+  }
+
   .itemDetailPage button
   {
     margin: 1% auto;
@@ -192,5 +197,10 @@
   .startPage button
   {
     margin: 10% auto;
+  }
+
+  .landingPage p
+  {
+    font-size: 2em;
   }
 }
