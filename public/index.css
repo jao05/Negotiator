@@ -1,0 +1,174 @@
+*
+{
+	box-sizing: border-box;
+}
+
+main
+{
+	width: 60%;
+	margin: 5% auto;
+	text-align: center;	
+}
+
+header
+{
+	text-align: center;
+	padding-top: 5%;
+	font-size: 3em;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.landingPage p
+{
+	text-align: justify;	
+	font-size: 2em;
+	margin-bottom: 5%;
+}
+
+input
+{
+	background-color: #DDE8D2;
+}
+
+select
+{
+	background-color: #DDE8D2;
+}
+
+button
+{
+	background-color: #FFAD0B;
+	color: white;
+	border: transparent;
+	border-radius: 25px;
+}
+
+button:hover
+{
+	background-color: #E8A439;
+} 
+
+.landingPage button, .startPage button, .selectAreaPage button, .itemDetailPage button, .chooseNegotiatorPage button, .negotiatorSignupPage button, #cancelLoginBtn
+{
+	width: 33.33%;	
+	margin: 5%;
+	padding: 2.5% 0;
+	font-size: 1.5em;
+}
+
+.userSignupPage p, .selectAreaPage p, .itemDetailPage p, .chooseNegotiatorPage p, .negotiatorSignupPage p
+{
+	
+	font-size: 2em;
+	margin-bottom: 10%;
+}
+
+#userSignupForm div, .loginForm div
+{
+	display: block;
+	margin: 2.5% auto;
+	font-size: 2em;
+	text-align: left;
+	width: 75%;
+}
+
+#userSignupForm input, .loginForm input, .negotiatorSignupPage input
+{
+	width: 50%;
+	padding: 1%;
+	font-size: 1em;
+}
+
+#userSignupForm label, .loginForm label
+{
+	width: 30%;
+	display: inline-block;
+}
+
+#userSignupForm button, .loginForm button
+{
+	width: 33.33%;	
+	margin: 10% 5%;
+	padding: 2.5% 0;
+	font-size: 1.5em;
+}
+
+.selectAreaPage select
+{
+	padding: 2% 1%;
+	font-size: 1.5em;
+	width: 33%;
+}
+
+.itemDetailPage select, .negotiatorSignupPage select
+{
+	padding: 2% 1%;
+	font-size: 2em;
+	width: 33%;	
+}
+
+.itemDetailForm fieldset
+{
+	margin-top: 5%;
+}
+
+.itemDetailForm fieldset input
+{
+	padding: 2%;
+	width: 33%;
+}
+
+.itemDetailForm fieldset label
+{
+	width: 10%;
+	display: inline-block;
+	font-size: 1.5em;
+}
+
+.itemDetailForm fieldset legend
+{
+	font-size: 2em;
+	padding: 5%;
+}
+
+#chooseNegotiatorForm div
+{
+	text-align: left;
+	width: 50%;
+	margin: 0 auto;
+	font-size: 2em;
+	margin-bottom: 4%;
+}
+
+input[name='negotiatorChoices'] 
+{
+	margin-right: 5%;
+}
+
+.negotiatorSignupPage p
+{	
+	margin-top: 10%;
+	margin-bottom: 2%;
+}
+
+.negotiatorSignupPage label
+{
+	margin-left: 5%;
+    font-size: 2em;
+    margin-right: 1%;
+}
+
+.negotiatorSignupPage input
+{
+	width: 25%;
+}
+
+.negotiatorSignupForm
+{
+	margin-top: 10%;
+}
+
+.loginForm
+{
+	display: inline;
+}

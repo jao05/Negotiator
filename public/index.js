@@ -11,23 +11,64 @@ let itemModel;
 let negotiatorSelection
 
 
-function showLandingPage()
-{
-    // Load landing page
-    // Give option to sign-up or login
-    
-    // If user alreay exists...login
-    loginAsUser();
-
-    // If user doesn't exist...sign-up
-    signUpAsUser(); 
-}
 
 function loginAsUser()
 {
-    // Take in required info including new login credentials
-    // After valid credentials are provided, load the Start page, otherwise give error msg
-    renderStartPage();
+    // If users clicks Cancel button
+    $('#cancelLoginBtn').on('click', function(event){
+
+        event.preventDefault();
+
+        // Go back to Start Page
+        location.reload();
+    });
+
+    // After credentials are submitted, validate them
+    $('.loginForm').on('submit', function(event){
+
+        event.preventDefault();
+
+        // Take in required info including new login credentials
+        let loginUserName = $('#loginUsername').val();
+        let loginPassword = $('#loginPassword').val();
+
+        // Make POST request
+        //If credentials are valid, load the Start page,
+        let data = {           
+            
+            username: loginUserName,
+            password: loginPassword
+       };
+
+       // Using data stored in variables, create an object to add new user to the database collection that holds users
+       let settings = { 
+            url: "/users/login", 
+            type: 'POST', 
+            data: JSON.stringify(data), 
+            dataType: 'json', 
+            contentType: 'application/json; charset= utf-8', 
+            success: function(responseData) { 
+                console.log(responseData); //********************************************
+                localStorage.setItem('user', JSON.stringify(responseData));
+                
+                // Hide Login Page
+                $('.loginPage').hide();
+                $('#logoutBtn').show(); //***********************************
+                $('.startPage').show();
+            },
+            error: function(responseData){
+
+                console.log(responseData); //*******************************
+            }
+       };
+        
+       // Pass the object as parameter for the AJAX request
+       $.ajax(settings);
+
+        
+
+        //****************otherwise give error msg***********handle on front end? back end?
+    });    
 }
 
 function signUpAsUser()
@@ -74,7 +115,7 @@ function signUpAsUser()
                 localStorage.setItem('user', JSON.stringify(responseData));
                 // Display user sign-up message on screen                
                 $('.userSignupPage').html(`<p>Thanks ${ responseData.fullName }, you're all signed up!</p>`);
-
+                $('#logoutBtn').show();
                 $('.startPage').show();                
             }
        };
@@ -83,8 +124,7 @@ function signUpAsUser()
        $.ajax(settings);       
     });
 
-    // If user clicks "Cancel" button, reload the app
-    // Listen for click on 'Restart' button
+    // If user clicks "Cancel" button, reload the app    
     $('#cancelSignupBtn').on('click', function(event){
 
         event.preventDefault();
@@ -97,6 +137,7 @@ function signUpAsUser()
 function renderLandingPage()
 {
     // Hide all other pages
+    $('.loginPage').hide();
     $('.startPage').hide();    
     $('.selectAreaPage').hide();
     $('.itemDetailPage').hide();
@@ -104,15 +145,17 @@ function renderLandingPage()
     $('.negotiatorSignupPage').hide();
     $('.userSignupPage').hide();
 
-    /*
-    // Listen for click on 'Get Started' button
-    // Add to Start Page if this block is made active....<button type="submit" id="getStartedBtn">Log In</button>
-    $('#getStartedBtn').on('click', function(){
+    
+    // Listen for click on 'Login' button   
+    $('#loginBtn').on('click', function(){
 
-        // Take user to Start Page
-        renderStartPage();
+        // Show Login Page
+        $('.loginPage').show();
+
+        // Hide Landing Page
+        $('.landingPage').hide();        
     });
-    */
+    
 
     // Listen for click on 'Sign Up' button
     $('#signupBtn').on('click', function(){
@@ -154,6 +197,9 @@ function makeUserTypeSelection()
     $('.needNegotiatorBtn').on('click', function(){
        
 
+        // Hide User Signup page
+        $('.userSignupPage').hide();
+
         // Allow user to select the area in which the negotiation will take place
         selectArea();
 
@@ -164,6 +210,9 @@ function makeUserTypeSelection()
     // Listen for click on "Become A Negotiator" button
     $('.becomeNegotiatorBtn').on('click', function(){
         
+
+        // Hide User Signup page
+        $('.userSignupPage').hide();
 
         // Allow user to select the area in which the negotiation will take place
         signUpAsNegotiator();
@@ -188,15 +237,15 @@ function signUpAsNegotiator()
        // Store form inputs into variables
        let negotiatorSignupLocation = $('#negotiatorSignupLocationSelection').val();
        let negotiatorSignupExpertise = $('#negotiatorSignupExpertiseSelection').val();
-       let negotiatorSignupFirstName = $('#agentFirstName').val();
-       let negotiatorSignupLastName = $('#agentLastName').val();
-       
+       let negotiatorFirstName = JSON.parse(localStorage.getItem('user')).firstName;
+       let negotiatorLastName = JSON.parse(localStorage.getItem('user')).lastName;
+       console.log(negotiatorFirstName);//********************************************
        let data = {
             
             metroArea: negotiatorSignupLocation,
             expertise: negotiatorSignupExpertise,
-            agentFirstName: negotiatorSignupFirstName,
-            agentLastName: negotiatorSignupLastName
+            agentFirstName: negotiatorFirstName,
+            agentLastName: negotiatorLastName
        };
 
        // Using data stored in variables, create an object to add new negotiator to the database collection that holds Negotiators
@@ -215,7 +264,7 @@ function signUpAsNegotiator()
        $.ajax(settings);
 
        // Display agent sign-up message on screen
-       $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorSignupFirstName }, you're all signed up and ready to negotiate in ${ negotiatorSignupLocation }!</p>` + 
+       $('.negotiatorSignupPage').html(`<p>Thanks ${ negotiatorFirstName }, you're all signed up and ready to negotiate in ${ negotiatorSignupLocation }!</p>` + 
             `<p>You will receive notification when you have been matched with a client.</p>`
         );       
     });    
@@ -271,12 +320,7 @@ function selectItemAndAddDetail()
             // then take-in & store item detail inputs from form into variables
             itemYear = $('#itemYear').val();
             itemMake = $('#itemMake').val();
-            itemModel = $('#itemModel').val();             
-
-            /*
-            // make an (mock)AJAX request using the variable as parameters
-            getAndDisplayAgents();
-            */
+            itemModel = $('#itemModel').val();                         
 
             // Hide Item Detail Page
             $('.itemDetailPage').hide();
@@ -285,12 +329,6 @@ function selectItemAndAddDetail()
             getNegotiatorChoices(cityChoice, itemChoice);
         });
     });  
-}
-
-function chooseDifferentCity()
-{
-    // Provide link to return to "Select Area Screen"
-    // **********Back button??**************
 }
 
 function getNegotiatorChoices(chosenCity, chosenItem)
@@ -310,7 +348,7 @@ function generateNegotiatorChoices(data)
     // add the string to the negotiatorStrings array
     for ( let neg = 0; neg < data.negotiators.length; neg++)
     {        
-        negotiatorStrings.push(`<input type="radio" name="negotiatorChoices" id="choice${neg + 1}" value="${data.negotiators[neg].id}" required>${data.negotiators[neg].agentName}`);
+        negotiatorStrings.push(`<div><input type="radio" name="negotiatorChoices" id="choice${neg + 1}" value="${data.negotiators[neg].id}" required>${data.negotiators[neg].agentName}</div>`);
     }
 
     // If no negotiators fit the criteria (meaning there are none in db), return an appropriate message
@@ -330,7 +368,7 @@ function displayNegotiatorChoices(arrayOfNegotiatorInfoStrings)
     // For each matched negotiator returned, display response negotiator as a radio button choice
     for( string = 0; string < arrayOfNegotiatorInfoStrings.length; string++)
     {
-        $('#chooseNegotiatorForm').append(arrayOfNegotiatorInfoStrings[string]);
+        $('#chooseNegotiatorForm').prepend(arrayOfNegotiatorInfoStrings[string]);
     }
 
     // Show the list of negotiators
@@ -375,7 +413,7 @@ function makeNegotiatorSelection()
                 $('.chooseNegotiatorPage').append(`<p>Congrats ${userFirstName}, you will be represented well by ${responseNegotiatorData.agentName}!</p>` + 
                     `<p>You'll be contacted shortly to provide more info so that we can get started on your purchase.</p>`);  
         
-                // Change the text of the 'Restart' button to 'Done'   
+                // Change the text of the 'Restart' button to 'Done'   **********************
                 $('#restartBtn').text('Done');
             }
        };
@@ -401,9 +439,38 @@ function chooseDifferentItem()
     selectItemAndAddDetail();
 }
 
+function checkLoginStatus()
+{
+    if (localStorage.getItem('user'))
+    {
+        $('.landingPage').hide();
+        $('.startPage').show();
+    }
+    else
+    {
+        $('logoutBtn').hide();
+    }
+}
+
+function logOut()
+{
+    $('#logoutBtn').on('click', function(){
+
+        // Clear user in localStorage
+        localStorage.removeItem('user');
+
+        $('#logoutBtn').hide();
+        $('.landingPage').show();
+        renderLandingPage();
+    });
+}
+
 $(function() {
-    
-    renderLandingPage();    
+        
+    renderLandingPage();   
+    loginAsUser();
+    checkLoginStatus();
+    logOut();
     makeUserTypeSelection();
 })
 

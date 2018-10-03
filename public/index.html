@@ -10,6 +10,8 @@
 	          crossorigin="anonymous"></script>    
 	    <script src="index.js"></script>
 	    <link href="index.css" rel="stylesheet" type="text/css" />
+	    <link href="responsive.css" rel="stylesheet" type="text/css" />
+	    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	</head>
 	<body>
 		<header role="banner">
@@ -18,34 +20,61 @@
 
 		<main role="main">			
 			
+			<button type="submit" id="logoutBtn">Log Out</button>
+
 			<div class="landingPage">
 				<p>Welcome to Negotiator, where we take the stress out of making major purchases by handling all aspects of the deal for you. With a fews clicks, you will be connected with a dedicated agent to assist with due diligence, purchase price negotiation, financing terms negotiation, and product quality assurance.</p>
 				
+				<button type="submit" id="loginBtn">Log In</button>
 				<button type="submit" id="signupBtn">Sign Up</button>
 			</div>
 
-			<div class="loginPage"></div>
+			<div class="loginPage">
+				<form class="loginForm">
+					<div>
+						<label for="loginUsername">Username</label>
+	  					<input type="text" name="loginUsername" id="loginUsername" required>  					
+					</div>					
+
+	  				<div>
+	  					<label for="loginPassword">Password</label>
+	  					<input type="text" name="loginPassword" id="loginPassword" required>	
+	  				</div>	  				
+
+	  				<button type="submit" id="loginCredentialsSubmitBtn">Submit</button>	  				
+				</form>
+
+				<button type="submit" id="cancelLoginBtn">Cancel</button>	
+			</div>
 			
 			<div class="userSignupPage">
 				<p>Give us a little info about yourself.</p>
 
 				<form id="userSignupForm">
-					<label for="userFirstName">First Name</label>
-	  				<input type="text" name="userFirstName" id="userFirstName" required>
+					<div>
+						<label for="userFirstName">First Name</label>
+	  					<input type="text" name="userFirstName" id="userFirstName" required>	
+					</div>					
 
-	  				<label for="userLastName">Last Name</label>
-	  				<input type="text" name="userLastName" id="userLastName" required> 
+	  				<div>
+	  					<label for="userLastName">Last Name</label>
+	  					<input type="text" name="userLastName" id="userLastName" required> 	
+	  				</div>
+	  				
 
-	  				<label for="username">Username</label>
-	  				<input type="text" name="username" id="username" required>  				
+	  				<div>
+	  					<label for="username">Username</label>
+	  					<input type="text" name="username" id="username" required>  					
+	  				</div>	  				
 
-	  				<label for="password">Password</label>
-	  				<input type="text" name="password" id="password" required>
+	  				<div>
+	  					<label for="password">Password</label>
+	  					<input type="text" name="password" id="password" required>	
+	  				</div>	  				
 
 	  				<button type="submit" id="finishSignupBtn">Finish</button>	
-				</form>
-				
-	  			<button type="submit" id="cancelSignupBtn">Cancel</button>
+	  				<button type="submit" id="cancelSignupBtn">Cancel</button>
+				</form>	  			
 			</div>						
 			
 			<div class="startPage">				
@@ -55,12 +84,7 @@
 
 			<div class="negotiatorSignupPage">
 				<p>Complete this form to be on your way to a new career as a Negotiator!</p>
-				<form class="negotiatorSignupForm">
-					<label for="agentFirstName">First Name</label>
-	  				<input type="text" name="agentFirstName" id="agentFirstName" required>
-
-	  				<label for="agentLastName">Last Name</label>
-	  				<input type="text" name="agentLastName" id="agentLastName" required>
+				<form class="negotiatorSignupForm">					
 
 	  				<p>Location</p>
 	  				<select id="negotiatorSignupLocationSelection">
