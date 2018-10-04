@@ -62,11 +62,7 @@ function loginAsUser()
        };
         
        // Pass the object as parameter for the AJAX request
-       $.ajax(settings);
-
-        
-
-        //****************otherwise give error msg***********handle on front end? back end?
+       $.ajax(settings);        
     });    
 }
 
