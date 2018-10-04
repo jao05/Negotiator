@@ -37,32 +37,32 @@ ScreenShots
 
 Home Page
 
-![ NSS1.png ]()
+![ NSS1.png ](https://github.com/jao05/Negotiator/blob/cleanup-and-final-touches/NSS1.png)
 
 
 Choose an Action
 
-![ NSS2.png ]()
+![ NSS2.png ](https://github.com/jao05/Negotiator/blob/cleanup-and-final-touches/NSS2.png)
 
 
 Choose a Location
 
-![ NSS3.png ]()
+![ NSS3.png ](https://github.com/jao05/Negotiator/blob/cleanup-and-final-touches/NSS3.png)
 
 
 Choose an Item
 
-![ NSS4.png ]()
+![ NSS4.png ](https://github.com/jao05/Negotiator/blob/cleanup-and-final-touches/NSS4.png)
 
 
 Choose your Negotiator
 
-![ NSS5.png ]()
+![ NSS5.png ](https://github.com/jao05/Negotiator/blob/cleanup-and-final-touches/NSS5.png)
 
 
 Confirmation Message
 
-![ NSS6.png ]()
+![ NSS6.png ](https://github.com/jao05/Negotiator/blob/cleanup-and-final-touches/NSS6.png)
 
 
 Live Demo
