@@ -68,4 +68,4 @@ Confirmation Message
 Live Demo
 --------------------
 
-https://jao05.github.io/Stock-Screener/
+https://protected-crag-88734.herokuapp.com/
