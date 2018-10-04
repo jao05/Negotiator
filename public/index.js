@@ -397,7 +397,7 @@ function makeNegotiatorSelection()
         // Make a PUT request to store new values to user's object
         
         let data = {
-            // Needed to parse this to JSON to use....where's the other side??*********************
+            // Needed to parse this to JSON to use
             userID: JSON.parse(localStorage.getItem('user')).id,
             metroArea: cityChoice,
             selectedItem: itemChoice,
@@ -472,4 +472,3 @@ $(function() {
     logOut();
     makeUserTypeSelection();
 })
-
