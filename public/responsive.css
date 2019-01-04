@@ -140,6 +140,12 @@
     padding: 2.5% 0;
     font-size: 1.5em;
   }
+
+  #logoutBtn
+  {
+    height: 3em;
+    width: 10em;
+  }
 }
 
 @media only screen and (min-width: 768px) {
