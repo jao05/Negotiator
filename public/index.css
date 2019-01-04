@@ -47,6 +47,8 @@ p
 	text-align: justify;	
 	font-size: 2em;
 	margin-bottom: 5%;
+	padding: 5%;
+	background-color: grey;
 }
 
 label
