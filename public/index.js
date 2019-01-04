@@ -416,7 +416,7 @@ function makeNegotiatorSelection()
                 // Show Negotiator selection confirmation & message
                 $('#matchedAgents').hide();
                 $('.chooseNegotiatorPage').append(`<p>Congrats! You will be represented well by ${responseNegotiatorData.agentName}!</p>` + 
-                    `<p>You'll be contacted shortly to provide more info so that we can get started on your purchase.</p>`);  
+                    `<p>You'll be contacted shortly (actually you won't...this company isn't real yet) to provide more info so that we can get started on your purchase.</p>`);  
         
                 // Change the text of the 'Restart' button to 'Done'   **********************
                 $('#restartBtn').text('Done');
