@@ -35,6 +35,8 @@ body
 p
 {
 	color: white;
+	background-color: rgba(145, 151, 140, 1);
+	opacity: .9;
 }
 
 #yellow
@@ -48,12 +50,13 @@ p
 	font-size: 2em;
 	margin-bottom: 5%;
 	padding: 5%;
-	background-color: grey;
 }
 
 label
 {
 	color: white;
+	background-color: rgba(145, 151, 140, 1);
+	opacity: .9;
 }
 
 input
