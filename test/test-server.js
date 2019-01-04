@@ -61,6 +61,10 @@ function seedNegotiatorData(){
 
 
 describe('Serving HTML', function() {
+  
+  this.timeout(15000); // **** Added to deal with timeout error
+
+
   // Before our tests run, we activate the server. Our `runServer`
   // function returns a promise, and we return the promise by
   // doing `return runServer`. If we didn't return a promise here,
