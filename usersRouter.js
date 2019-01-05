@@ -69,6 +69,29 @@ router.post("/", jsonParser, (req, res) => {
     });
 });
 
+
+// PUT request to edit (modify) user
+router.put("/edit", jsonParser, (req, res) => {  
+
+  // we only support a subset of fields being updateable.
+  // if the user sent over any of the updatableFields, we udpate those values
+  // in document
+  const toUpdate = {};
+  const updateableFields = ["metroArea", "selectedItem"];
+
+  updateableFields.forEach(field => {
+    if (field in req.body) {
+      toUpdate[field] = req.body[field];
+    }
+  });
+  
+  console.log(req.body); // ************************************
+  // all key/value pairs in toUpdate will be updated -- that's what `$set` does
+  User.findByIdAndUpdate(req.body.userID, { $set: toUpdate })
+  .then(user => res.status(201).json(user.serialize()))
+  .catch(err => res.status(500).json({ message: "Internal server error" }));   
+});
+
 // PUT
 router.put("/", jsonParser, (req, res) => {  
 

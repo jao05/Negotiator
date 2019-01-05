@@ -16,6 +16,7 @@
 	<body>
 		<header role="banner">
 			<h1><< Negotiator >></h1>
+			<button id="showProfileBtn" onClick='showProfileDetails()'>Show Profile</button>
 		</header>
 
 		<main role="main">			
@@ -79,6 +80,37 @@
 				</form>	  			
 			</div>						
 			
+			<div class="profilePage">
+				<div id="displayAttributes">
+					<header>
+						Current Profile: 
+					</header>>
+				</div>
+
+				<p>Edit Profile</p>
+				<form id="modifyAttrForm">
+					<p>Location</p>
+					<select id="modifyCitySelection">
+					  <option value="New York City">New York City</option>
+					  <option value="Los Angeles">Los Angeles</option>
+					  <option value="Miami">Miami</option>				  
+					  <option value="Atlanta">Atlanta</option>
+					  <option value="Paris">Paris</option>
+					  <option value="Hong Kong">Hong Kong</option>			  
+					</select>
+
+					<p>Item</p>
+					<select id="modifyItemSelection">
+					  <option value="Car">Car</option>
+					  <option value="Home">Home</option>
+					  <option value="Boat">Boat</option>
+					  <option value="Plane">Plane</option>				  
+					</select>
+
+					<button id='editBtn' type="submit">Edit</button>
+				</form>
+			</div>
+
 			<div class="startPage">				
 				<button type="submit" class="needNegotiatorBtn">I Need a Negotiator</button>				
 				<button type="submit" class="becomeNegotiatorBtn">Become a Negotiator</button>

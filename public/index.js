@@ -275,6 +275,67 @@ function signUpAsNegotiator()
     });    
 }
 
+
+function showProfileDetails() 
+{
+    // Hide all other pages
+    $('.landingPage').hide();
+    $('.loginPage').hide();
+    $('.startPage').hide();    
+    $('.selectAreaPage').hide();
+    $('.itemDetailPage').hide();
+    $('.chooseNegotiatorPage').hide();
+    $('.negotiatorSignupPage').hide();
+    $('.userSignupPage').hide();
+
+    // Show the profile details div
+    $('.profilePage').show();
+
+    let user = JSON.parse(localStorage.getItem('user'));
+    console.log('USER IS', user); // ***************************************************
+
+    $('#displayAttributes').html(`<header>Current Profile:</header>>
+                    <p>${user.firstName} ${user.metroArea} ${user.selectedItem}</p>`);
+
+    $('#modifyAttrForm').on('submit', function(event) {
+        event.preventDefault();
+
+        // Store city choice in variables        
+        let modifiedCityChoice = $('#modifyCitySelection').val();
+
+        // Store city choice in variables        
+        let modifiedItemChoice = $('#modifyItemSelection').val();
+
+        console.log(modifiedItemChoice, modifiedCityChoice); // *****************************************
+
+        let data = {
+            // Needed to parse this to JSON to use
+            userID: user.id,
+            metroArea: modifiedCityChoice,
+            selectedItem: modifiedItemChoice                       
+       };       
+       
+       let settings = { 
+            url: "users/edit", 
+            type: 'PUT', 
+            data: JSON.stringify(data), 
+            dataType: 'json', 
+            contentType: 'application/json; charset= utf-8', 
+            success: function(responseUpdatedProfileData) { 
+                console.log(responseUpdatedProfileData); // *********************************               
+        
+                $('.profilePage').hide();
+                $('.startPage').show();
+
+                localStorage.setItem('user', JSON.stringify(responseUpdatedProfileData));
+            }
+       };
+        
+       // Pass the object as parameter for the AJAX request
+       $.ajax(settings);
+    });
+}
+
 function selectArea()
 {
     // Show "selectAreaPage"

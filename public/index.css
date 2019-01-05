@@ -137,6 +137,11 @@ button:hover
 	font-size: 1.5em;
 }
 
+.profilePage
+{
+	display: none;
+}
+
 .selectAreaPage select
 {
 	padding: 2% 1%;
