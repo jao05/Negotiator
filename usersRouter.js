@@ -85,10 +85,13 @@ router.put("/edit", jsonParser, (req, res) => {
     }
   });
   
-  console.log(req.body); // ************************************
+  console.log('toUpdate is', toUpdate); // ************************************
   // all key/value pairs in toUpdate will be updated -- that's what `$set` does
-  User.findByIdAndUpdate(req.body.userID, { $set: toUpdate })
-  .then(user => res.status(201).json(user.serialize()))
+  User.findByIdAndUpdate(req.body.userID, toUpdate, {new: true})
+  .then(data => {
+   res.status(201).json(data.serialize())    
+  })
+  
   .catch(err => res.status(500).json({ message: "Internal server error" }));   
 });
 

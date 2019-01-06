@@ -328,6 +328,7 @@ function showProfileDetails()
                 $('.startPage').show();
 
                 localStorage.setItem('user', JSON.stringify(responseUpdatedProfileData));
+                console.log('devin is', localStorage.getItem('user')); // *************************
             }
        };
         
