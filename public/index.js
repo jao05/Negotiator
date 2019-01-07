@@ -54,6 +54,7 @@ function loginAsUser()
                 $('.loginPage').hide();
                 $('#logoutBtn').show(); 
                 $('.startPage').show();
+                $('#showProfileBtn').show();
             },
             error: function(responseData){
 
@@ -290,12 +291,18 @@ function showProfileDetails()
 
     // Show the profile details div
     $('.profilePage').show();
+    $('#hideProfileBtn').show();
+
+    // Hide the showProfileBtn
+    $('#showProfileBtn').hide();    
 
     let user = JSON.parse(localStorage.getItem('user'));
     console.log('USER IS', user); // ***************************************************
 
     $('#displayAttributes').html(`<header>Current Profile:</header>>
-                    <p>${user.firstName} ${user.metroArea} ${user.selectedItem}</p>`);
+                    <div id='shownProfileName'>Name: ${user.firstName}</div> 
+                    <div id='shownProfileArea'>Area: ${user.metroArea}</div> 
+                    <div id='shownProfileItem'>Item: ${user.selectedItem}</div>`);
 
     $('#modifyAttrForm').on('submit', function(event) {
         event.preventDefault();
@@ -335,6 +342,21 @@ function showProfileDetails()
        // Pass the object as parameter for the AJAX request
        $.ajax(settings);
     });
+}
+
+function hideProfileDetails()
+{
+    // Hide the profile details div
+    $('.profilePage').hide();
+    
+    // Hide the hideProfileBtn
+    $('#hideProfileBtn').hide();
+
+    // Show the startPage again
+    $('.startPage').show();
+
+    // Show the showProfileBtn again
+    $('#showProfileBtn').show();
 }
 
 function selectArea()

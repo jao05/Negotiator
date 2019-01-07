@@ -24,6 +24,23 @@ header
 	color: white;
 }
 
+#showProfileBtn
+{
+	display: none;
+}
+
+#hideProfileBtn
+{
+	display: none;
+}
+
+#shownProfileName, #shownProfileArea, #shownProfileItem
+{
+	color: white;
+	background-color: rgba(145, 151, 140, 1);
+	opacity: .9;
+}
+
 body
 {
 	background-image: url('NegoBackgroundImg.jpg');
