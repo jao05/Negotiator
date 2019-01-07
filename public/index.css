@@ -163,6 +163,29 @@ button:hover
 .profilePage
 {
 	display: none;
+	font-size: 2em;
+}
+
+.profilePage header
+{
+	color: white;
+	background-color: rgba(145, 151, 140, 1);
+	opacity: .9;
+	margin-top: 5%;
+}
+
+.profilePage select
+{
+	font-size: 1em;
+}
+
+#editBtn
+{
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 5%;
+	font-size: 1em;
 }
 
 .selectAreaPage select

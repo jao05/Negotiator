@@ -532,7 +532,7 @@ function checkLoginStatus()
     }
     else
     {
-        $('.logoutBtn').hide();
+        $('#logoutBtn').hide();
     }
 }
 
@@ -540,7 +540,8 @@ function logOut()
 {
     $('#logoutBtn').on('click', function(){
 
-        // Hide showProfileBtn & hideProfileBtn
+        // Hide profilePage, showProfileBtn & hideProfileBtn
+        $('.profilePage').hide();
         $('#showProfileBtn').hide();
         $('#hideProfileBtn').hide();   
 

@@ -147,6 +147,13 @@
     width: 10em;
     font-size: 1em;
   }
+
+  #showProfileBtn, #hideProfileBtn
+  {
+    height: 3em;
+    width: 10em;
+    font-size: 1em;
+  }
 }
 
 @media only screen and (min-width: 768px) {
