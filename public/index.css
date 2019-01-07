@@ -61,6 +61,11 @@ p
 	color: yellow;
 }
 
+.redWords
+{
+	color: red;
+}
+
 .landingPage p
 {
 	text-align: justify;	
@@ -101,7 +106,8 @@ button:hover
 	border: 2px solid #FFAD0B;
 } 
 
-.landingPage button, .startPage button, .selectAreaPage button, .itemDetailPage button, .chooseNegotiatorPage button, .negotiatorSignupPage button, #cancelLoginBtn
+.landingPage button, .startPage button, .selectAreaPage button, .itemDetailPage button, 
+.chooseNegotiatorPage button, .negotiatorSignupPage button, #cancelLoginBtn
 {
 	width: 33.33%;	
 	margin: 5%;

@@ -331,6 +331,8 @@ function showProfileDetails()
             success: function(responseUpdatedProfileData) { 
                 console.log(responseUpdatedProfileData); // *********************************               
         
+                $('#hideProfileBtn').hide();
+                $('#showProfileBtn').show();
                 $('.profilePage').hide();
                 $('.startPage').show();
 
@@ -530,13 +532,17 @@ function checkLoginStatus()
     }
     else
     {
-        $('logoutBtn').hide();
+        $('.logoutBtn').hide();
     }
 }
 
 function logOut()
 {
     $('#logoutBtn').on('click', function(){
+
+        // Hide showProfileBtn & hideProfileBtn
+        $('#showProfileBtn').hide();
+        $('#hideProfileBtn').hide();   
 
         // Clear user in localStorage
         localStorage.removeItem('user');
