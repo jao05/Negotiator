@@ -188,6 +188,15 @@ button:hover
 	font-size: 1em;
 }
 
+#deleteProfileBtn
+{
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 5%;
+	font-size: 1em;
+}
+
 .selectAreaPage select
 {
 	padding: 2% 1%;

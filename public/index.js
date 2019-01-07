@@ -346,6 +346,14 @@ function showProfileDetails()
     });
 }
 
+function deleteUserProfile()
+{
+    // If user clicks on the DELETE button:
+    // 1. Send a request to remove the user from the db.
+    // 2. Clear user from local storage.
+    // 3. Redirect to landingPage.
+}
+
 function hideProfileDetails()
 {
     // Hide the profile details div
