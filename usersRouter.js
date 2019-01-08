@@ -124,7 +124,7 @@ router.put("/", jsonParser, (req, res) => {
 });
 
 // DELETE
-router.delete("/users/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
   User.findByIdAndRemove(req.params.id)
     .then(user => res.status(204).end())
     .catch(err => res.status(500).json({ message: "Internal server error" }));

@@ -336,8 +336,7 @@ function showProfileDetails()
                 $('.profilePage').hide();
                 $('.startPage').show();
 
-                localStorage.setItem('user', JSON.stringify(responseUpdatedProfileData));
-                console.log('devin is', localStorage.getItem('user')); // *************************
+                localStorage.setItem('user', JSON.stringify(responseUpdatedProfileData));                
             }
        };
         
@@ -348,10 +347,41 @@ function showProfileDetails()
 
 function deleteUserProfile()
 {
+    console.log('MADE IT HERE...'); // **************************************************
+    
+    user = JSON.parse(localStorage.getItem('user'));
+    console.log('USER IS NOW...', user); // ***************************************************
+
     // If user clicks on the DELETE button:
     // 1. Send a request to remove the user from the db.
+    let data = {            
+        userID: user.id          
+    };
+
+    let settings = { 
+        url: `users/${user.id}`, 
+        type: 'DELETE', 
+        data: JSON.stringify(data), // ************NEDDED? See line 357*********
+        dataType: 'json', 
+        contentType: 'application/json; charset= utf-8', 
+        success: function() { 
+            console.log('The user has been deleted.'); // *********************************               
+        
+            //Redirect to landingPage.
+            $('.landingPage').show();
+            $('#logoutBtn').hide();
+            $('#hideProfileBtn').hide();            
+            $('#showProfileBtn').hide();
+            $('.profilePage').hide();                        
+        }
+    };
+
+    // Pass the object as parameter for the AJAX request
+    $.ajax(settings);
+
+    
     // 2. Clear user from local storage.
-    // 3. Redirect to landingPage.
+    localStorage.setItem('user', null); 
 }
 
 function hideProfileDetails()
