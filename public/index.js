@@ -296,8 +296,7 @@ function showProfileDetails()
     // Hide the showProfileBtn
     $('#showProfileBtn').hide();    
 
-    let user = JSON.parse(localStorage.getItem('user'));
-    console.log('USER IS', user); // ***************************************************
+    let user = JSON.parse(localStorage.getItem('user'));    
 
     $('#displayAttributes').html(`<header>Current Profile:</header>>
                     <div id='shownProfileName'>Name: ${user.firstName}</div> 
@@ -311,9 +310,7 @@ function showProfileDetails()
         let modifiedCityChoice = $('#modifyCitySelection').val();
 
         // Store city choice in variables        
-        let modifiedItemChoice = $('#modifyItemSelection').val();
-
-        console.log(modifiedItemChoice, modifiedCityChoice); // *****************************************
+        let modifiedItemChoice = $('#modifyItemSelection').val();        
 
         let data = {
             // Needed to parse this to JSON to use
@@ -328,8 +325,7 @@ function showProfileDetails()
             data: JSON.stringify(data), 
             dataType: 'json', 
             contentType: 'application/json; charset= utf-8', 
-            success: function(responseUpdatedProfileData) { 
-                console.log(responseUpdatedProfileData); // *********************************               
+            success: function(responseUpdatedProfileData) {                 
         
                 $('#hideProfileBtn').hide();
                 $('#showProfileBtn').show();
@@ -346,11 +342,8 @@ function showProfileDetails()
 }
 
 function deleteUserProfile()
-{
-    console.log('MADE IT HERE...'); // **************************************************
-    
-    user = JSON.parse(localStorage.getItem('user'));
-    console.log('USER IS NOW...', user); // ***************************************************
+{    
+    user = JSON.parse(localStorage.getItem('user'));    
 
     // If user clicks on the DELETE button:
     // 1. Send a request to remove the user from the db.
@@ -361,12 +354,10 @@ function deleteUserProfile()
     let settings = { 
         url: `users/${user.id}`, 
         type: 'DELETE', 
-        data: JSON.stringify(data), // ************NEDDED? See line 357*********
+        data: JSON.stringify(data), 
         dataType: 'json', 
         contentType: 'application/json; charset= utf-8', 
-        success: function() { 
-            console.log('The user has been deleted.'); // *********************************               
-        
+        success: function() {         
             //Redirect to landingPage.
             $('.landingPage').show();
             $('#logoutBtn').hide();
@@ -535,8 +526,6 @@ function makeNegotiatorSelection()
             dataType: 'json', 
             contentType: 'application/json; charset= utf-8', 
             success: function(responseNegotiatorData) { 
-                console.log(responseNegotiatorData);
-
                 // Show Negotiator selection confirmation & message
                 $('#matchedAgents').hide();
                 $('.chooseNegotiatorPage').append(`<p>Congrats! You will be represented well by ${responseNegotiatorData.agentName}!</p>` + 
