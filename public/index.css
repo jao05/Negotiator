@@ -186,6 +186,7 @@ button:hover
 	margin-left: auto;
 	margin-top: 5%;
 	font-size: 1em;
+	width: 80%;
 }
 
 #deleteProfileBtn
@@ -195,6 +196,7 @@ button:hover
 	margin-left: auto;
 	margin-top: 5%;
 	font-size: 1em;
+	width: 80%;
 }
 
 .selectAreaPage select
