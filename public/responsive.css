@@ -7,6 +7,11 @@
     /*width: 100%;*/
   }
 
+  main 
+  {
+    width: 80%;
+  }
+
   header
   {
   	font-size: 1.5em;
@@ -17,9 +22,15 @@
     text-align: justify;
     font-size: 1.2em;
     margin-bottom: 10%;
+    padding: 2%;
   }
 
-  .landingPage button, .selectAreaPage button, .itemDetailPage button, .chooseNegotiatorPage button, .negotiatorSignupPage button, #cancelLoginBtn 
+  .landingPage button,
+  .selectAreaPage button,
+  .itemDetailPage button,
+  .chooseNegotiatorPage button,
+  .negotiatorSignupPage button,
+  #cancelLoginBtn 
   {
     width: 100%;
     margin: 5%;
@@ -65,7 +76,11 @@
     font-size: 1.5em;
   }
 
-  .userSignupPage p, .selectAreaPage p, .itemDetailPage p, .chooseNegotiatorPage p, .negotiatorSignupPage p 
+  .userSignupPage p,
+  .selectAreaPage p, 
+  .itemDetailPage p, 
+  .chooseNegotiatorPage p, 
+  .negotiatorSignupPage p 
   {
     font-size: 2em;
     margin-bottom: 10%;
@@ -153,6 +168,8 @@
     height: 3em;
     width: 10em;
     font-size: 1em;
+    margin-bottom: 3%;
+    margin-top: 3%;
   }
 }
 
@@ -193,9 +210,33 @@
 
 @media only screen and (min-width: 992px){
 
-  .loginForm button, #cancelLoginBtn, .landingPage button, .selectAreaPage button, .selectAreaPage select, .itemDetailPage select, .itemDetailPage button 
+  .loginForm button, 
+  #cancelLoginBtn, 
+  .landingPage button, 
+  .selectAreaPage button, 
+  .selectAreaPage select, 
+  .itemDetailPage select,
+  .itemDetailPage button 
   {
     width: 50%;    
+  }
+
+  #loginBtn,
+  #signupBtn
+  {
+    width: 25%;
+    margin-right: 5%;
+  }
+
+  #loginCredentialsSubmitBtn
+  {
+    margin-bottom: 2%;
+    margin-top: 2%;
+  }
+  
+  .loginForm div
+  {
+    width: 25%; 
   }
 
   #userSignupForm button
@@ -210,11 +251,34 @@
 
   .startPage button
   {
-    margin: 10% auto;
+    margin: 10% 2%;
+    width: 25%;
+    font-size: 1.25em;
   }
 
   .landingPage p
   {
-    font-size: 2em;
+    font-size: 1.25em;
+    margin-bottom: 5%;
+  }
+
+  .profilePage div,
+  .profilePage p 
+  {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .profilePage #editBtn,
+  .profilePage #deleteProfileBtn
+  {
+    width: 30%;
+  }
+
+  .goToCityBtn
+  {
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
 }

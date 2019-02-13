@@ -1,11 +1,16 @@
-html
-{
-	height: 100%;
-}
-
 *
 {
 	box-sizing: border-box;
+}
+
+html
+{
+	height: 100%;
+	background-image: url('NegoBackgroundImg.jpg');	
+    background-size: cover;
+    /*min-width: 100%;
+	min-height: 100%;*/
+	background-repeat: no-repeat;
 }
 
 main
@@ -43,9 +48,7 @@ header
 
 body
 {
-	background-image: url('NegoBackgroundImg.jpg');
-	background-repeat: repeat-y;
-    background-size: cover;
+	
     
 }
 
@@ -101,9 +104,10 @@ button
 
 button:hover
 {	
-	background-color: white;
-	color: #FFAD0B;
-	border: 2px solid #FFAD0B;
+	background-color: #FFC639;
+	cursor: pointer;
+	/*color: #FFAD0B;
+	border: 2px solid #FFAD0B;*/
 } 
 
 .landingPage button, .startPage button, .selectAreaPage button, .itemDetailPage button, 
