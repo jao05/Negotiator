@@ -115,15 +115,15 @@
   .selectAreaPage button, .itemDetailPage button
   {
     width: 100%;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 2.5% 0;
     font-size: 1.5em;
   }
 
   .itemDetailForm fieldset input 
   {
-    padding: 2%;
-    width: 50%;
+    padding: 1%;
+    width: 33%;
     margin: 5% 0;
   }
 
@@ -188,7 +188,7 @@
 
   .itemDetailPage select 
   {
-    margin: 10% auto;
+    margin: 3% auto;
   }
 
   .itemDetailPage p
@@ -202,10 +202,27 @@
     margin-bottom: 5%;
   }
 
-  .negotiatorSignupPage p 
+  .negotiatorSignupPage p
   {    
-    margin-top: 20%;
+    margin-top: 3%;
+    font-size: 1.25em;
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
   }
+
+  .negotiatorSignupPage select 
+  {
+    width: 30%;
+    font-size: 1em;
+  }
+
+  .negotiatorSignupPage button
+  {
+    width: 30%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }  
 }
 
 @media only screen and (min-width: 992px){
@@ -247,6 +264,13 @@
   .itemDetailPage button
   {
     margin: 1% auto;
+    width: 30%;
+    padding: 1%;
+  }
+
+  .itemDetailPage select
+  {
+    padding: 1%;
   }
 
   .startPage button
@@ -276,9 +300,18 @@
     width: 30%;
   }
 
-  .goToCityBtn
+  #displayAttributes header 
   {
-    margin-top: 5%;
-    margin-bottom: 5%;
+    font-size: .75em;
+  }
+
+  .profilePage p
+  {
+    font-size: .5em;
+  }
+
+  .profilePage div
+  {
+    font-size: .75em;
   }
 }

@@ -4,12 +4,11 @@
 }
 
 html
-{
-	height: 100%;
+{	
 	background-image: url('NegoBackgroundImg.jpg');	
     background-size: cover;
-    /*min-width: 100%;
-	min-height: 100%;*/
+    min-width: 100%;
+	min-height: 100%;
 	background-repeat: no-repeat;
 }
 
@@ -105,9 +104,7 @@ button
 button:hover
 {	
 	background-color: #FFC639;
-	cursor: pointer;
-	/*color: #FFAD0B;
-	border: 2px solid #FFAD0B;*/
+	cursor: pointer;	
 } 
 
 .landingPage button, .startPage button, .selectAreaPage button, .itemDetailPage button, 
@@ -213,8 +210,13 @@ button:hover
 .itemDetailPage select, .negotiatorSignupPage select
 {
 	padding: 2% 1%;
-	font-size: 2em;
+	font-size: 1.25em;
 	width: 33%;	
+}
+
+.itemDetailPage select
+{
+	margin-bottom: 3%;
 }
 
 .itemDetailForm legend
