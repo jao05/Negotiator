@@ -256,9 +256,35 @@
     width: 25%; 
   }
 
+  .userSignupPage
+  {
+    width: 50%;
+    margin: auto;
+  }
+
+  .userSignupPage p
+  {
+    font-size: 1.5em;
+  }
+
+  .userSignupPage label
+  {
+    font-size: .5em;
+  }
+
+  .userSignupPage input
+  {
+    margin-bottom: 2%;
+  }
+
   #userSignupForm button
   {
     width: 50%;
+  }
+
+  #finishSignupBtn
+  {
+    margin-bottom: 2%;
   }
 
   .itemDetailPage button
@@ -286,10 +312,16 @@
     margin-bottom: 5%;
   }
 
+  .profilePage
+  {
+    width: 50%;
+    margin: auto;
+  }
+
   .profilePage div,
   .profilePage p 
   {
-    width: 50%;
+    width: 60%;
     margin-right: auto;
     margin-left: auto;
   }
@@ -297,7 +329,13 @@
   .profilePage #editBtn,
   .profilePage #deleteProfileBtn
   {
-    width: 30%;
+    width: 25%;
+    margin-bottom: 2%;
+  }
+
+  .profilePage #deleteProfileBtn
+  {
+    margin-bottom: 2%;
   }
 
   #displayAttributes header 
