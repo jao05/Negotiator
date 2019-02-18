@@ -352,4 +352,9 @@
   {
     font-size: .75em;
   }
+
+  #confirmNegotiatorBtn
+  {
+    width: 40%;
+  }
 }
